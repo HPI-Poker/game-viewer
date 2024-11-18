@@ -1,0 +1,36 @@
+.matchup-matrix {
+    width: 100%;
+    border-collapse: collapse;
+}
+  
+.matchup-matrix th,
+.matchup-matrix td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: center;
+    width: 100px;
+    height: 40px;
+}
+
+.matchup-matrix .clickable {
+    cursor: pointer;
+}
+
+.cell-content {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.fat-name {
+    font-weight: bold;
+    font-size: 20px; /* Adjust the font size as needed */
+}
+
+.loading-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}

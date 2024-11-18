@@ -1,0 +1,16 @@
+button.ui-buttons {
+    border: none; /* Remove border */
+    border-radius: 4px;
+    color: black; /* White text */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer; /* Mouse pointer on hover */
+    transition-duration: 0.4s; /* Transition effect */
+}
+  
+button:hover.ui-buttons {
+    background-color: #45a049; /* Green background on hover */
+}
