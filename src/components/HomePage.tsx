@@ -11,9 +11,9 @@ function HomePage() {
                 <div className="w-1/2 overflow-auto flex-none">
                     <GameList />
                 </div>
-                <div className="w-1/2 overflow-auto flex-none">
-                    <BotList />
-                </div>
+                {/* <div className="w-1/2 overflow-auto flex-none"> */}
+                    {/* <BotList /> */}
+                {/* </div> */}
             </div>
         </div>
     );
