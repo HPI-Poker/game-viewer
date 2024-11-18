@@ -1,13 +1,22 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 function Header() {
     const navigate = useNavigate();
     const handleHome = () => navigate('/');
 
+
     return (
-        <header className="p-4 text-white flex items-start">
-            <h1 onClick={handleHome} className="text-2xl cursor-pointer">HPI Poker Bot Competition 2025</h1>
+        <header className="p-5 text-text-color flex items-start fixed w-screen bg-white">
+            <div className='flex  items-center space-x-2'>
+                <div className=''>
+                   <img src={logo} className='size-10' alt="test" />
+                </div>
+                <div>
+                    <h1 onClick={handleHome} className="text-2xl cursor-pointer font-medium">HPI Poker Bot Competition 2025</h1>
+                </div>
+
+            </div>
         </header>
     );
 }

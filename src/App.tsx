@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { SummaryObj } from './model/SummaryObj';
 import { AppProvider } from './model/AppContext';
 import UploadPage from './components/UploadPage';
+import GamePage from './components/GamePage';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<UploadPage />} />
+            <Route path="/game" element={<GamePage />} />
           </Routes>
         </Router>
       </div>

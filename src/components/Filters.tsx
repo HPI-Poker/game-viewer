@@ -1,7 +1,7 @@
 import React from "react";
 
 function Filters() {
-    return <defs>
+  return <defs>
     <filter id="grayscale">
       <feColorMatrix
         type="matrix"

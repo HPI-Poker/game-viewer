@@ -69,7 +69,7 @@ function OldApp() {
     setAllPlayers((allPlayers) => [...allPlayers, player]);
 
     setPlayerMatrix((playerMatrix) => playerMatrix?.copyByAddingPlayer(player) ?? null);
-    
+
     /* setPlayer1((currentPlayer1) => {
       if (currentPlayer1 === null) {
         return player;
@@ -122,13 +122,13 @@ function OldApp() {
           <Routes>
             <Route path="/login" element={<SignInPage />} />
             <Route path="/" element={<PrivateRoute />}>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/games/create" element={<CreateGamePage />} />
-            <Route path="/games/:id" element={<GamePage />} />
-            <Route path="/bots/:id" element={<BotPage />} />
-            <Route path="/bots/create" element={<CreateBotPage />} />
-            <Route path="/tournament" element={<Tournament playerMatrix={playerMatrix} onPlayersSelected={loadGame} />} />
-          </Route>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/games/create" element={<CreateGamePage />} />
+              <Route path="/games/:id" element={<GamePage />} />
+              <Route path="/bots/:id" element={<BotPage />} />
+              <Route path="/bots/create" element={<CreateBotPage />} />
+              <Route path="/tournament" element={<Tournament playerMatrix={playerMatrix} onPlayersSelected={loadGame} />} />
+            </Route>
           </Routes>
         </Router>
       </div>
