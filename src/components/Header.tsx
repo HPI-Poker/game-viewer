@@ -7,7 +7,7 @@ function Header() {
 
     return (
         <header className="p-4 text-white flex items-start">
-            <h1 onClick={handleHome} className="text-2xl cursor-pointer">HPI Poker Bots 2024</h1>
+            <h1 onClick={handleHome} className="text-2xl cursor-pointer">HPI Poker Bot Competition 2025</h1>
         </header>
     );
 }
