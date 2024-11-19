@@ -37,7 +37,7 @@ const getWinnerOrDraw = (resultPlayer1: string, resultPlayer2: string) => {
 };
 
 const getResult = (resultLine: string, namePlayer1: string, namePlayer2: string) => {
-  const resultParts = resultLine.split(", "); 
+  const resultParts = resultLine.split(", ");
   if (resultParts.length > 0 && resultParts[0] === "Final") {
     const [_, resultPlayer1, resultPlayer2] = resultParts;
     // Make sure that the name player order is used in the returned result
@@ -114,7 +114,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
 
   useInterval(
     () => advance(),
-    config.isPaused ? null : config.speedMs  
+    config.isPaused ? null : config.speedMs
   );
 
   const handleLogLine = (roundIdx: number, logIdx: number) => {
@@ -205,7 +205,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
           return "";
         }
       });
-      
+
       newPlayers = players.map(player => {
         if (player.name === playerName) {
           return player.copyWithFolded(true);
@@ -216,7 +216,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
     } else if (logLine.includes(" bets ")) {
       const [playerName, raisedToStr] = logLine.split(" bets ");
       const raisedTo = parseInt(raisedToStr);
-  
+
       newTexts = players.map(player => {
         if (player.name === playerName) {
           return "betting";
@@ -224,7 +224,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
           return "";
         }
       });
-      
+
       newPlayers = players.map(player => {
         if (player.name === playerName) {
           return player.copyAndSetStack(player.stack + player.bet - raisedTo, raisedTo);
@@ -235,7 +235,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
     } else if (logLine.includes(" raises to ")) {
       const [playerName, raisedToStr] = logLine.split(" raises to ");
       const raisedTo = parseInt(raisedToStr);
-  
+
       newTexts = players.map(player => {
         if (player.name === playerName) {
           return "raise";
@@ -243,7 +243,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
           return "";
         }
       });
-      
+
       newPlayers = players.map(player => {
         if (player.name === playerName) {
           return player.copyAndSetStack(player.stack + player.bet - raisedTo, raisedTo);
@@ -324,11 +324,11 @@ const SimulatedPokerTable = ({ log, summary, close }: {
 
       setPot(0);
     } else if (logLine === "Run reached") {
-      
+
     } else if (logLine.includes(" won ")) {
-      
+
     } else if (logLine.startsWith("Final, ")) { // Final, A (398), Mehdi (402)
-      const {result, chipsPlayer1, chipsPlayer2} = getResult(logLine, players[0].name, players[1].name);
+      const { result, chipsPlayer1, chipsPlayer2 } = getResult(logLine, players[0].name, players[1].name);
       newPlayers = players.map((player, idx) => {
         player = player.copyWithNewHand([]);
 
@@ -369,7 +369,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
     <div className='container'>
       <div />
       <div style={{ marginBottom: '10px' }}>
-        <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={close}/>  
+        <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={close} />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         <div style={{ flex: '0.5 1 auto' }}>
@@ -394,13 +394,13 @@ const SimulatedPokerTable = ({ log, summary, close }: {
       <div>
         {!isDone && <PokerTable
           communityCards={communityCards}
-          players={players}  
+          players={players}
           pot={pot}
           round={`Round #${roundLogIndices[0] + 1} (${roundLogIndices[1]})`}
           activePlayerIdx={activePlayerIdx}
         />}
 
-        {isDone && summary && <Summary summary={summary}/>}
+        {isDone && summary && <Summary summary={summary} />}
       </div>
     </div>
   );
