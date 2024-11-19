@@ -41,6 +41,7 @@ export class SummaryObj {
     bankrolls: Bankroll[];
     topHands: Hand[];
     playerStats: PlayerStats[];
+    logs: string[];
 
     constructor(obj: any) {
         this.title = obj['Game Summary'];
@@ -50,6 +51,7 @@ export class SummaryObj {
         this.numberOfRounds = obj['Number of rounds'];
         this.bankrolls = obj['Discretized bankroll counts'].map((bankrollObj: any) => new Bankroll(bankrollObj));
         this.topHands = obj['Top hands'].map((topHandObj: any) => new Hand(topHandObj));
+        this.logs = obj['Logs'];
         
         const scores =  obj['Score'].split(" vs ").map((score: string) => parseInt(score));
         this.playerStats = obj['Player stats'].map((playerStatsObj: any, i: number) => new PlayerStats(playerStatsObj, scores[i]));

@@ -3,11 +3,18 @@ import Header from './Header';
 import { useDropzone } from 'react-dropzone'
 import { FileArchive, FileCheck, FileUp, Trash2, Trophy, Upload } from "lucide-react";
 import { SummaryObj } from '../model/SummaryObj';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
-function UploadPage() {
+interface UploadPageProps {
+    setSummary: React.Dispatch<React.SetStateAction<SummaryObj | null>>;
+    setLog: React.Dispatch<React.SetStateAction<string[][] | null>>;
+    summary: SummaryObj | null;
+}
 
+function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
+    const navigate = useNavigate();
     const [files, setFiles] = useState<File[]>([]);
-    const [summary, setSummary] = useState<SummaryObj | null>(null);
     const [text, setText] = useState<Boolean>(false);
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -21,17 +28,19 @@ function UploadPage() {
             console.log(json);
             setSummary(new SummaryObj(json));
 
-
         }
         console.log(acceptedFiles[0]);
         reader.readAsText(acceptedFiles[0])
 
 
         return setFiles(acceptedFiles);
-    }, [])
+    }, [setSummary])
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
+    const gameHandler = () => {
+        navigate('/game');
+    }
 
     // useEffect(() => {
     //     console.log(files);
@@ -121,33 +130,53 @@ function UploadPage() {
                                         <div className='mt-1'>
                                             {files.map((file, index) => (
                                                 <>
-                                                    <div key={index} className='  border rounded-md py-3 px-3'>
-                                                        <div className='flex justify-between items-center '>
-                                                            <div className='flex space-x-3 items-center'>
-                                                                <div className='border p-2 rounded-full hover:bg-slate-100 transition-all'>
-                                                                    <Upload className='text-text-color size-4' />
+                                                    <AnimatePresence>
+                                                        <motion.div
+                                                            initial={{ x: 300, opacity: 0 }}
+                                                            animate={{ x: 0, opacity: 1 }}
+                                                            exit={{ x: -300, opacity: 0 }}
+                                                            key={file.name}
+                                                            className='border rounded-md py-3 px-3'
+                                                        >
+                                                            <div className='flex justify-between items-center '>
+                                                                <div className='flex space-x-3 items-center'>
+                                                                    <div className='border p-2 rounded-full hover:bg-slate-100 transition-all'>
+                                                                        <Upload className='text-text-color size-4' />
+                                                                    </div>
+                                                                    <div className='flex flex-col'>
+                                                                        <div className='text-text-color font-semibold'>
+                                                                            <p className='text-sm'>{file.name}</p>
+                                                                        </div>
+                                                                        <div className='text-text-color flex text-xs font-medium'>
+                                                                            <p className=''>{file.size / 1000} KB</p>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <div className='flex flex-col'>
-                                                                    <div className='text-text-color font-semibold'>
-                                                                        <p className='text-sm'>{file.name}</p>
-                                                                    </div>
-                                                                    <div className='text-text-color flex text-xs font-medium'>
-                                                                        <p className=''>{file.size / 1000} KB</p>
-                                                                    </div>
+                                                                <div className='p-2 hover:ring-1 rounded-full hover:ring-slate-400 transition-all cursor-pointer ' onClick={(() => setFiles([]))}>
+                                                                    <Trash2 className='text-text-color size-4' />
                                                                 </div>
                                                             </div>
-                                                            <div className='p-2 hover:ring-1 rounded-full hover:ring-slate-400 transition-all cursor-pointer ' onClick={(() => setFiles([]))}>
-                                                                <Trash2 className='text-text-color size-4' />
+
+                                                            <div className='h-[2.8px] rounded-full relative w-full bg-slate-300 mt-2'>
+                                                                <motion.div
+                                                                    initial={{ width: 0 }}
+                                                                    animate={{ width: "100%" }}
+                                                                    transition={{ duration: 3 }}
+                                                                    className='bg-text-color h-[2.8px]'
+                                                                />
                                                             </div>
-                                                        </div>
 
-                                                        <div className='h-[2.8px] rounded-full w-full bg-slate-300 mt-2' />
-
-                                                    </div>
+                                                        </motion.div >
+                                                    </AnimatePresence>
 
                                                     {/* Summary-Infos */}
-                                                    <div className=''>
-                                                        <div className='flex mt-4 text-sm font-medium'>
+                                                    <motion.div
+                                                        className=''
+                                                        initial={{ x: 300, opacity: 0 }}
+                                                        animate={{ x: 0, opacity: 1 }}
+                                                        exit={{ x: -300, opacity: 0 }}
+                                                    >
+                                                        <div className='flex mt-2 text-sm font-medium'>
                                                             <span className='text-text-color'>Infos</span>
                                                         </div>
                                                         <div className='mt-1 border rounded-md py-3 px-3'>
@@ -165,13 +194,13 @@ function UploadPage() {
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </motion.div>
+
+                                                    <div className='flex w-full mt-5'>
+                                                        <button className='border-text-color flex justify-center items-center space-x-3 w-full hover:border-text-color/40 transition-all border text-text-color h-9 font-medium rounded-md group' onClick={gameHandler}>
+                                                            <span className=''>Start game</span>
+                                                        </button>
                                                     </div>
-
-                                                    <div className='flex justify-end mt-5'>
-                                                        <button className='border-text-color hover:border-text-color/40 transition-all border text-text-color w-[8rem] h-9 font-medium rounded-md'>Start game</button>
-                                                    </div>
-
-
                                                 </>
                                             ))}
                                         </div>
@@ -185,9 +214,9 @@ function UploadPage() {
                     </div>
 
                 </div>
-            </div>
+            </div >
 
-        </div>
+        </div >
     );
 }
 
