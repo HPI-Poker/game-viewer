@@ -25,7 +25,12 @@ const PokerTablePage = ({ summary }: PokerTablePageProps) => {
                 runLog = []
             }
         }
-        return <SimulatedPokerTable log={log} summary={summary} close={handleClose} />
+        return (
+            <div className=''>
+                <SimulatedPokerTable log={log} summary={summary} close={handleClose} />
+            </div>
+        )
+
     } else {
         console.log('log and summary are null')
 

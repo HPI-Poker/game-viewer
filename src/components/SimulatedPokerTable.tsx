@@ -8,6 +8,7 @@ import { SummaryObj } from '../model/SummaryObj';
 import Summary from './Summary';
 import RoundList from './RoundList';
 import '../styles/SimulatedPokerTable.css';
+import Header from './Header';
 
 const getWinnerOrDraw = (resultPlayer1: string, resultPlayer2: string) => {
   const [namePlayer1, chipsStrPlayer1] = resultPlayer1.split(" ");
@@ -366,41 +367,42 @@ const SimulatedPokerTable = ({ log, summary, close }: {
   }, [])
 
   return (
-    <div className='container'>
-      <div />
-      <div style={{ marginBottom: '10px' }}>
-        <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={close} />
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        <div style={{ flex: '0.5 1 auto' }}>
-          <RoundList
+    <div className=''>
+      <Header />
+      <div className='flex justify-center w-screen flex-col space-y-3'>
+        <div className='mt-32'>
+          <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={close} />
+        </div>
+        <div>
+          <div>
+            {/* <RoundList
             title="Top Rounds"
             summary={summary}
             onlyTopHands={true}
             selectedRound={roundLogIndices[0]}
             setRound={setRound}
-          />
-        </div>
-        <div style={{ flex: '1 1 auto' }}>
+          /> */}
+          </div>
+          {/* <div style={{ flex: '1 1 auto' }}>
           <RoundList
             title="All Rounds"
             summary={summary}
             selectedRound={roundLogIndices[0]}
             setRound={setRound}
           />
+        </div> */}
         </div>
-      </div>
+        <div>
+          {!isDone && <PokerTable
+            communityCards={communityCards}
+            players={players}
+            pot={pot}
+            round={`Round #${roundLogIndices[0] + 1} (${roundLogIndices[1]})`}
+            activePlayerIdx={activePlayerIdx}
+          />}
 
-      <div>
-        {!isDone && <PokerTable
-          communityCards={communityCards}
-          players={players}
-          pot={pot}
-          round={`Round #${roundLogIndices[0] + 1} (${roundLogIndices[1]})`}
-          activePlayerIdx={activePlayerIdx}
-        />}
-
-        {isDone && summary && <Summary summary={summary} />}
+          {isDone && summary && <Summary summary={summary} />}
+        </div>
       </div>
     </div>
   );
