@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import Header from './Header';
 import { useDropzone } from 'react-dropzone'
-import { FileArchive, FileCheck, FileUp, Trash2, Trophy, Upload } from "lucide-react";
+import { FileArchive, FileCheck, FileUp, Key, Trash2, Trophy, Upload } from "lucide-react";
 import { SummaryObj } from '../model/SummaryObj';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +17,11 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
     const [files, setFiles] = useState<File[]>([]);
     const [text, setText] = useState<Boolean>(false);
 
+    const setLocalStorage = (summaryJson: any) => {
+        localStorage.setItem("summary", JSON.stringify(summaryJson));
+    }
+
+
     const onDrop = useCallback((acceptedFiles: File[]) => {
         const reader = new FileReader()
 
@@ -27,11 +32,11 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
             const json = JSON.parse(reader.result as string)
             console.log(json);
             setSummary(new SummaryObj(json));
+            setLocalStorage(json)
 
         }
         console.log(acceptedFiles[0]);
         reader.readAsText(acceptedFiles[0])
-
 
         return setFiles(acceptedFiles);
     }, [setSummary])
@@ -130,7 +135,7 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                                         <div className='mt-1'>
                                             {files.map((file, index) => (
                                                 <>
-                                                    <AnimatePresence>
+                                                    <AnimatePresence key={index}>
                                                         <motion.div
                                                             initial={{ x: 300, opacity: 0 }}
                                                             animate={{ x: 0, opacity: 1 }}
