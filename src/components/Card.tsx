@@ -1,17 +1,31 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { useGSAP } from "@gsap/react";
 
 const width = 80;
 const margin = 5;
 
-function Card({ card, idx, x, y, isFolded=false }: { card: string, idx: number, x: number, y: number, isFolded?: boolean }) {
+function Card({ card, idx, x, y, isFolded = false }: { card: string, idx: number, x: number, y: number, isFolded?: boolean }) {
+
+
+  const cardRef = useRef(null)
+
+  const container = useRef(null);
+
+  useGSAP(() => {
+    if (cardRef.current) {
+      gsap.to(cardRef.current, { y : -20});
+    }
+  }, { dependencies: [card], scope: container, revertOnUpdate: true });
+
   if (card) {
     try {
       const src = require(`/public/assets/cards/${cardToFilename(card)}.svg`);
-      return <g key={idx} transform={`translate(${x + idx * (width + margin)}, ${y})`}>
-        <image width={width} xlinkHref={src} filter={isFolded ? "url(#grayscale)" : ""} />
+      return <g ref={container} key={idx} transform={`translate(${x + idx * (width + margin)}, ${y + 20})`}>
+        <image width={width} ref={cardRef} xlinkHref={src} filter={isFolded ? "url(#grayscale)" : ""} />
       </g>;
     } catch (err) {
-      console.error(err);  
+      console.error(err);
     }
   }
 
@@ -53,7 +67,7 @@ function cardToFilename(card: string) {
       break;
     case 'd':
       suite = 'DIAMOND';
-      break;  
+      break;
   }
 
   return `${suite}-${id}`;

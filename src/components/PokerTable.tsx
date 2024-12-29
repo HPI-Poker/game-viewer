@@ -12,26 +12,69 @@ const PokerTable = (
 ) => {
   return (
     <>
-      <div className='flex space justify-center px-6'>
-        <div className='w-[18vmin] h-[70vmin] bg-white rounded-l-xl shadow-md'>
-          <div className='flex p-5'>
-            <h1 className='text-text-color flex items-center text-xl font-semibold'>
-              <User />
-              <div className='ml-2'>
-              {players[0]?.name}
+      <div className='flex justify-center'>
+        <div className='w-[18vmin] h-[70vmin]  rounded-l-xl shadow-md'>
+          <div className='w-[18vmin] h-[70vmin] bg-white rounded-l-xl shadow-md p-5'>
+
+            <div>
+              <div className='flex w-[15rem] items-center'>
+                <p className='text-text-color flex items-center text-xl font-semibold  max-[1940px]:text-sm  '>
+                  <User />
+                  <div className='ml-2'>
+                    {players[0]?.name}
+                  </div>
+                </p>
               </div>
-            </h1>
+
+              <div className='mt-5'>
+                <div className='flex w-[15rem] items-center mt-2'>
+                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                    <div>
+                      Bankroll:
+                    </div>
+                    <div className=''>
+                      {players[0]?.bankroll}
+                    </div>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className='flex w-[15rem] items-center mt-2'>
+                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                    <div>
+                      Chips:
+                    </div>
+                    <div className=''>
+                      {players[0]?.stack}
+                    </div>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className='flex w-[15rem] items-center mt-2'>
+                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                    <div>
+                      Bet:
+                    </div>
+                    <div className=''>
+                      {players[0]?.bet}
+                    </div>
+                  </p>
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
         <div className='flex relative justify-center'>
-          <div className='flex z-10 w-[126vmin]'>
-            <svg width="1200" height="500" className='z-10 mt-40 ml-[21rem]'>
+          <div className='flex z-10 w-[126vmin] items-center justify-center'>
+            <svg width="1200" height="500" className='z-10 mt-40 ml-[11rem]'>
               <Filters />
               <text x={500} y={23} style={{ fontWeight: "600" }} fill="white " textAnchor='middle'>{round}</text>
               <Board x={500} y={110} cards={communityCards} />
               <Chips x={400} y={390} text="Pot" chips={pot} />
-
               <Player x={25} y={230} player={players[0]} isActive={activePlayerIdx === 0} />
+
               <Player x={815} y={230} player={players[1]} isActive={activePlayerIdx === 1} />
             </svg>
           </div>
@@ -39,15 +82,54 @@ const PokerTable = (
             <img src={pokerTableImage} className=' object-cover ' alt="" />
           </div>
         </div>
-        <div className='w-[18vmin] h-[70vmin] bg-white rounded-r-xl shadow-md'>
-          <div className='flex p-5'>
-            <h1 className='text-text-color flex items-center text-xl font-semibold'>
-              <User />
-              <div className='ml-2'>
-              {players[1]?.name}
+        <div className='w-[18vmin] h-[70vmin] bg-white rounded-r-xl shadow-md p-5 text-right'>
+        <div className=''>
+              <div className='flex w-[15rem] items-center'>
+                <p className='text-text-color flex items-center text-xl font-semibold  max-[1940px]:text-sm  '>
+                  <User />
+                  <div className='ml-2'>
+                    {players[0]?.name}
+                  </div>
+                </p>
               </div>
-            </h1>
-          </div>
+
+              <div className='mt-5'>
+                <div className='flex w-[15rem] items-center mt-2'>
+                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                    <div>
+                      Bankroll:
+                    </div>
+                    <div className=''>
+                      {players[0]?.bankroll}
+                    </div>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className='flex w-[15rem] items-center mt-2'>
+                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                    <div>
+                      Chips:
+                    </div>
+                    <div className=''>
+                      {players[0]?.stack}
+                    </div>
+                  </p>
+                </div>
+              </div>
+              <div>
+                <div className='flex w-[15rem] items-center mt-2'>
+                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                    <div>
+                      Bet:
+                    </div>
+                    <div className=''>
+                      {players[0]?.bet}
+                    </div>
+                  </p>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
 

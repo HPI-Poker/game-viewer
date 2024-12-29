@@ -9,7 +9,7 @@ function Chips({ chips, x, y, text }: { chips: number, x: number, y: number, tex
       {text}:
     </text>
     { chips !== 0   
-      ? <g>
+      ? <g className=''>
         <image x={x + 60} y={y - 9} width="30" xlinkHref={src} />
         <text x={x + 75} y={y + 7} fontSize="9" fill="white" xmlSpace="preserve" textAnchor="middle" dominantBaseline="middle">
           {chips}

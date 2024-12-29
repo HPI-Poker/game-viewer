@@ -1,10 +1,11 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // import "../styles/SimulationUI.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faArrowLeft, faForward, faFastForward } from '@fortawesome/free-solid-svg-icons';
 import Header from './Header';
+import { X } from 'lucide-react';
 
 enum Speed {
     Slow,
@@ -68,6 +69,8 @@ function SimulationUI(
         { config: GameSimulationConfig, setConfig: (c: GameSimulationConfig) => any, skipToEnd: () => void, backToHome: () => void }
 ) {
 
+    const [open, setOpen] = useState(false);
+
     const keyboardHandler = (e: KeyboardEvent) => {
         console.log(e.key);
     }
@@ -96,6 +99,11 @@ function SimulationUI(
         };
     }, [config, setConfig]);
 
+
+    const topRounds = () => {
+        setOpen(!open)
+    }
+
     return (
         <>
             <div className=' justify-center flex items-center space-x-5'>
@@ -122,9 +130,35 @@ function SimulationUI(
                     <button className="text-text-color font-medium hover:font-semibold transition-all hover:scale-105" onClick={skipToEnd}>Summary</button>
 
                 </div>
-                <div className='px-4 py-4 cursor-pointer bg-white rounded-full border hover:scale-105 transition-all'>
+                <div className='px-4 py-4 cursor-pointer bg-white rounded-full border hover:scale-105 transition-all' onClick={topRounds}>
                     <h1 className='text-text-color font-medium'>Top Rounds</h1>
                 </div>
+
+
+            </div>
+            <div className='flex justify-center'>
+                {open &&
+                    <div className='absolute justify-center min-w-[20rem] z-30 mt-32 bg-white rounded-lg shadow-md p-2'>
+                        <div className='flex items-center justify-between w-full px-2'>
+                            <h1 className='text-text-color font-semibold text-xl'>
+                                Top Rounds
+                            </h1>
+                            <div className='text-text-color cursor-pointer' onClick={(() => setOpen(!open))}>
+                                <X className='size-5' />
+                            </div>
+                        </div>
+                        <div className='mt-2'>
+                            {Array.from({ length: 10 }, (_, i) => (
+                                <div key={i} className='flex justify-between items-center p-2 border-b border-gray-200 scroll-auto'>
+                                    <div className='flex items-center space-x-2'>
+                                        <div className='text-text-color font-semibold'>Round {i + 1}</div>
+                                        <div className='text-text-color font-semibold'>Player 1</div>
+                                    </div>
+                                    <div className='text-text-color font-semibold'>+1000</div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>}
             </div>
 
 

@@ -392,7 +392,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
           />
         </div> */}
         </div>
-        <div>
+        <div className='flex justify-center'>
           {!isDone && <PokerTable
             communityCards={communityCards}
             players={players}
