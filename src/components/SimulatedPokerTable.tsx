@@ -369,8 +369,8 @@ const SimulatedPokerTable = ({ log, summary, close }: {
   return (
     <div className='overflow-hidden'>
       <Header />
-      <div className='flex justify-center w-screen flex-col space-y-3'>
-        <div className='mt-24'>
+      <div className='flex justify-center w-screen flex-col'>
+        <div className='m-4'>
           <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={close} summary={summary} setRound={setRound} />
         </div>
         <div>

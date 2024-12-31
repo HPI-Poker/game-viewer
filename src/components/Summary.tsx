@@ -60,7 +60,7 @@ const Summary = ({ summary }: { summary: SummaryObj }) => {
     return <Scrollbars style={{ width: '1000px', height: '500px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
             <div style={{ display: 'flex', width: '100%' }}>
-                <h3 style={{ marginTop: 4, marginBottom: 4}}>Summary of {summary.title}</h3>
+                <h3 style={{ marginTop: 4, marginBottom: 4, stroke:"black", fill:"black"}}>Summary of {summary.title}</h3>
             </div>
 
             <div className="summary-container">
