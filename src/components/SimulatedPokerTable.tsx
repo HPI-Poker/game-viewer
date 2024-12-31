@@ -101,8 +101,13 @@ const SimulatedPokerTable = ({ log, summary, close }: {
   const skipToEnd = () => {
     const lastRoundIdx = log.length - 1;
     const lastLogIdx = log[lastRoundIdx].length - 1;
-    setRoundLogIndices([lastRoundIdx, lastLogIdx]);
-    handleLogLine(lastRoundIdx, lastLogIdx);
+    if (roundLogIndices[0] === lastRoundIdx && roundLogIndices[1] === lastLogIdx) {
+      setRoundLogIndices([lastRoundIdx, lastLogIdx]);
+      handleLogLine(lastRoundIdx, lastLogIdx);
+    } else {
+      setRoundLogIndices([0, 0]);
+      handleLogLine(0, 0);
+    }
   };
 
   const setRound = (round: number) => {
@@ -149,6 +154,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
           throw new Error("Finding new players failed");
         }
       });
+      newPlayers.sort((a, b) => a.name.localeCompare(b.name));
     } else if (logLine.includes(" posts the blind of ")) { // A posts the blind of 1
       const [playerName, blindStr] = logLine.split(" posts the blind of ");
       newPlayers = newPlayers.map((player) => {
@@ -368,9 +374,9 @@ const SimulatedPokerTable = ({ log, summary, close }: {
 
   return (
     <div className='overflow-hidden'>
-      <Header />
-      <div className='flex justify-center w-screen flex-col'>
-        <div className='m-4'>
+      {/* <Header /> */}
+      <div className='w-screen h-screen flex flex-col'>
+        <div className='mt-5 mb-1'>
           <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={close} summary={summary} setRound={setRound} />
         </div>
         <div>
@@ -392,7 +398,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
           />
         </div> */}
         </div>
-        <div className='flex justify-center'>
+        <div className='flex flex-column justify-center align-center h-screen'>
           {!isDone && <PokerTable
             communityCards={communityCards}
             players={players}

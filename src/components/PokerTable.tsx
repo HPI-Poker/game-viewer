@@ -12,130 +12,130 @@ const PokerTable = (
 ) => {
   return (
     <>
-      <div className='flex justify-center'>
-        <div className='w-[18vmin] h-[70vmin]  rounded-l-xl shadow-md'>
-          <div className='w-[18vmin] h-[70vmin] bg-white rounded-l-xl shadow-md p-5'>
-
+      <div className='flex flex-column justify-center items-center m-5'>
+        <div className='w-[22vmin] h-full rounded-l-xl shadow-md'>
+          <div className='w-full h-full bg-white rounded-l-xl shadow-md p-3 text-right'>
             <div>
-              <div className='flex w-[15rem] items-center'>
-                <p className='text-text-color flex items-center text-xl font-semibold  max-[1940px]:text-sm  '>
-                  <User />
-                  <h1 className='ml-2'>
+              <div className='flex w-[15rem] items-center' >
+                <div className='text-text-color flex items-center justify-start text-xl font-semibold  max-[1940px]:text-sm' >
+                  <div>
+                    <User />
+                  </div>
+                  <span className='ml-1' style={{ textOverflow: 'ellipsis', width: '100%' }}>
                     {players[0]?.name}
-                  </h1>
-                </p>
+                  </span>
+                </div>
               </div>
 
               <div className='mt-5'>
                 <div className='flex w-[15rem] items-center mt-2'>
-                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                  <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
                     <div>
                       Bankroll:
                     </div>
                     <div className=''>
                       {players[0]?.bankroll}
                     </div>
-                  </p>
+                  </div>
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <div className='flex w-[15rem] items-center mt-2'>
-                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                  <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
                     <div>
                       Chips:
                     </div>
                     <div className=''>
                       {players[0]?.stack}
                     </div>
-                  </p>
+                  </div>
                 </div>
               </div>
               <div>
                 <div className='flex w-[15rem] items-center mt-2'>
-                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                  <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
                     <div>
                       Bet:
                     </div>
                     <div className=''>
                       {players[0]?.bet}
                     </div>
-                  </p>
+                  </div>
                 </div>
-              </div>
+              </div>*/}
             </div>
-
           </div>
         </div>
-        <div className='flex relative justify-center'>
+        <div className='flex relative justify-center shadow-md'>
           <div className='flex z-10 w-[126vmin] items-center justify-center'>
-            <svg width="100%" height="100%" viewBox="0 0 1200 500" className='z-10 mt-40 ml-[11rem]'>
+            <svg width="100%" height="100%" viewBox="0 0 1000 666.6666" className='z-10'>
+              <image href={pokerTableImage} width="100%" height="100%" />
               <Filters />
-              <text x={500} y={23} style={{ fontWeight: "600" }} fill="white " textAnchor='middle'>{round}</text>
-              <Board x={500} y={110} cards={communityCards} />
-              <Chips x={460} y={180} text="Pot" chips={pot}  />
+              <text x={500} y={25} style={{ fontWeight: "600" }} fontSize="25" fill="white" textAnchor='middle'>{round}</text>
+              <Board x={500} y={200} cards={communityCards} />
+              {pot > 0 && <Chips x={430} y={400} text="" chips={pot} />}
               <Player x={25} y={230} player={players[0]} isActive={activePlayerIdx === 0} />
 
               <Player x={815} y={230} player={players[1]} isActive={activePlayerIdx === 1} />
             </svg>
           </div>
-          <div className='absolute -z-0 overflow-hidden w-[126vmin] h-[70vmin] flex justify-center items-center select-none'>
+          {/* <div className='absolute -z-0 overflow-hidden w-[126vmin] h-[70vmin] flex justify-center items-center select-none'>
             <img src={pokerTableImage} className=' object-cover ' alt="" />
-          </div>
+          </div> */}
         </div>
-        <div className='w-[18vmin] h-[70vmin] bg-white rounded-r-xl shadow-md p-5 text-right'>
-        <div className=''>
-              <div className='flex w-[15rem] items-center'>
-                <p className='text-text-color flex items-center text-xl font-semibold  max-[1940px]:text-sm  '>
+        <div className='w-[22vmin] h-full bg-white rounded-r-xl shadow-md p-3 text-right'>
+          <div>
+            <div className='flex w-full items-center'>
+              <div className='text-text-color flex items-center justify-start text-xl font-semibold  max-[1940px]:text-sm'>
+                <div>
                   <User />
-                  <h1 className='ml-2'>
-                    {players[1]?.name}
-                  </h1>
-                </p>
+                </div>
+                <span className='ml-1' style={{ textOverflow: 'ellipsis' }}>
+                  {players[1]?.name}
+                </span>
               </div>
+            </div>
 
-              <div className='mt-5'>
-                <div className='flex w-[15rem] items-center mt-2'>
-                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
-                    <div>
-                      Bankroll:
-                    </div>
-                    <div className=''>
-                      {players[1]?.bankroll}
-                    </div>
-                  </p>
+            <div className='mt-5'>
+              <div className='flex w-[15rem] items-center mt-2'>
+                <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                  <div>
+                    Bankroll:
+                  </div>
+                  <div className=''>
+                    {players[1]?.bankroll}
+                  </div>
                 </div>
               </div>
-              <div>
+            </div>
+            {/* <div>
                 <div className='flex w-[15rem] items-center mt-2'>
-                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                  <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
                     <div>
                       Chips:
                     </div>
                     <div className=''>
                       {players[1]?.stack}
                     </div>
-                  </p>
+                  </div>
                 </div>
               </div>
               <div>
                 <div className='flex w-[15rem] items-center mt-2'>
-                  <p className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
+                  <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
                     <div>
                       Bet:
                     </div>
                     <div className=''>
                       {players[1]?.bet}
                     </div>
-                  </p>
+                  </div>
                 </div>
-              </div>
-            </div>
+              </div>*/}
+          </div>
         </div>
       </div>
-
     </>
-
-
   );
 };
 
