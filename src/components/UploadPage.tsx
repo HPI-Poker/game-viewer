@@ -39,14 +39,19 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
       reader.onabort = () => console.log("file reading was aborted");
       reader.onerror = () => console.log("file reading has failed");
       reader.onload = () => {
-        const json = JSON.parse(reader.result as string);
-        console.log(json);
-        if (json["Logs"] && json["Top hands"] && json["Player stats"] && json["Score"] && json["Discretized bankroll counts"]) {
-            setSummary(new SummaryObj(json));
-            setLocalStorage(json);
-        } else {
-            alert("Invalid summary.json file. Needs to contain 'Logs', 'Top hands', 'Player stats', 'Score', and 'Discretized bankroll counts' fields.");
+        try {
+            const json = JSON.parse(reader.result as string);
+            console.log(json);
+            if (json["Logs"] && json["Top hands"] && json["Player stats"] && json["Score"] && json["Discretized bankroll counts"]) {
+                setSummary(new SummaryObj(json));
+                setLocalStorage(json);
+            } else {
+                throw new Error("Invalid summary.json file. Needs to be a valid json file that contains 'Logs', 'Top hands', 'Player stats', 'Score', and 'Discretized bankroll counts' fields.");
+            }
+        } catch (e) {
+            console.error(e);
             setFiles([]);
+            alert("Invalid summary.json file. Needs to be a valid json file that contains 'Logs', 'Top hands', 'Player stats', 'Score', and 'Discretized bankroll counts' fields.");
         }
       };
       console.log(acceptedFiles[0]);
@@ -69,15 +74,10 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
     gameHandler()
   }
 
-  // useEffect(() => {
-  //     console.log(files);
-  // }, [files])
-
-  // TODO: Implement uploader -> send to parent component to set state variables
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-full w-screen">
       <Header />
-      <div className="flex items-center h-full">
+      <div className="flex items-center h-full mt-5">
         <div className="flex w-screen justify-center">
           <div className="flex">
             <div className="space-y-4 flex space-x-2">
@@ -271,7 +271,7 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                   </div>
                 </div>
               </div>
-              <div className="flex ">
+              <div className="flex text-text-color">
                 <div className="bg-white border p-2 px-4 rounded-md -mt-2">
                   <div className="flex flex-col justify-start">
                     <h1 className="font-medium flex">Sample Games</h1>
@@ -281,21 +281,21 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                   </div>
                   <div className="mt-5 space-y-3">
                     <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(FishvsMrCarlo))}>
-                      <div>Player 1 vs Player 2</div>
+                      <div>Fish vs Mr Carlo</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
                     <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(PairHuntervsPrecomputer))}>
-                      <div>Player 1 vs Player 2</div>
+                      <div>Pair Hunter vs Pre Computer</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
                     <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(SkeletonvsOptimizer))}>
-                      <div>Player 1 vs Player 2</div>
+                      <div>Skeleton vs Optimizer</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={() => sampleGame(FishvsMrCarlo)}>
+                    {/* <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={() => sampleGame(FishvsMrCarlo)}>
                       <div>Player 1 vs Player 2</div>
                       <Play className="size-5 text-green-700" />
-                    </h1>
+                    </h1> */}
                   </div>
                 </div>
               </div>
