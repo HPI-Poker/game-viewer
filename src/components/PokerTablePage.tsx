@@ -26,7 +26,7 @@ const PokerTablePage = ({ summary }: PokerTablePageProps) => {
             }
         }
         return (
-            <div className=''>
+            <div className=' overflow-hidden'>
                 <SimulatedPokerTable log={log} summary={summary} close={handleClose} />
             </div>
         )

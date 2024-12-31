@@ -20,9 +20,9 @@ const PokerTable = (
               <div className='flex w-[15rem] items-center'>
                 <p className='text-text-color flex items-center text-xl font-semibold  max-[1940px]:text-sm  '>
                   <User />
-                  <div className='ml-2'>
+                  <h1 className='ml-2'>
                     {players[0]?.name}
-                  </div>
+                  </h1>
                 </p>
               </div>
 
@@ -72,7 +72,7 @@ const PokerTable = (
               <Filters />
               <text x={500} y={23} style={{ fontWeight: "600" }} fill="white " textAnchor='middle'>{round}</text>
               <Board x={500} y={110} cards={communityCards} />
-              <Chips x={400} y={390} text="Pot" chips={pot} />
+              <Chips x={460} y={180} text="Pot" chips={pot}  />
               <Player x={25} y={230} player={players[0]} isActive={activePlayerIdx === 0} />
 
               <Player x={815} y={230} player={players[1]} isActive={activePlayerIdx === 1} />
@@ -87,9 +87,9 @@ const PokerTable = (
               <div className='flex w-[15rem] items-center'>
                 <p className='text-text-color flex items-center text-xl font-semibold  max-[1940px]:text-sm  '>
                   <User />
-                  <div className='ml-2'>
-                    {players[0]?.name}
-                  </div>
+                  <h1 className='ml-2'>
+                    {players[1]?.name}
+                  </h1>
                 </p>
               </div>
 
@@ -100,7 +100,7 @@ const PokerTable = (
                       Bankroll:
                     </div>
                     <div className=''>
-                      {players[0]?.bankroll}
+                      {players[1]?.bankroll}
                     </div>
                   </p>
                 </div>
@@ -112,7 +112,7 @@ const PokerTable = (
                       Chips:
                     </div>
                     <div className=''>
-                      {players[0]?.stack}
+                      {players[1]?.stack}
                     </div>
                   </p>
                 </div>
@@ -124,7 +124,7 @@ const PokerTable = (
                       Bet:
                     </div>
                     <div className=''>
-                      {players[0]?.bet}
+                      {players[1]?.bet}
                     </div>
                   </p>
                 </div>

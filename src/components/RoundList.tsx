@@ -2,7 +2,7 @@ import React from 'react';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { SummaryObj } from '../model/SummaryObj';
 
-function RoundList({ summary, selectedRound, setRound, title, onlyTopHands=false, height='300px' }: { summary: SummaryObj | null, selectedRound: number, onlyTopHands?: boolean, setRound: (i: number) => void, title: string, height?: string }) {
+function RoundList({ summary, selectedRound, setRound, onlyTopHands = false, height = '300px' }: { summary: SummaryObj | null, selectedRound: number, onlyTopHands?: boolean, setRound: (i: number) => void, height?: string }) {
     if (!summary) {
         return null;
     }
@@ -19,22 +19,23 @@ function RoundList({ summary, selectedRound, setRound, title, onlyTopHands=false
 
         if (!onlyTopHands || topHand !== undefined) {
             const wonChips = topHand ? Math.abs(topHand.chipDelta[0]).toString() : undefined;
-            // TODO: Show winners, Blood Runs, Hands
-            // Add tooltip with wonChips
             listItems.push(
-                <div key={i} onClick={() => setRound(i)} style={listItemStyle} title={wonChips ? "Chips won: " + wonChips : undefined}>
-                    Round #{i + 1}{topHand !== undefined ? "!" : ""}
+                <div key={i}  className='overflow-auto'>
+                    <div className='flex items-center space-x-2 cursor-pointer' onClick={(() => setRound(i))}>
+                        <div className='text-text-color font-semibold'>Round #{topHand?.roundNumber || i+1} </div>
+                        <div className='text-text-color font-semibold'>{wonChips}</div>
+                    </div>
+                   
                 </div>
             );
         }
     }
 
-    return <div style={{display: 'flex', height: '100%', overflowY: 'auto', marginLeft: 20, marginRight: 20, flexDirection: 'column', alignItems: 'flex-start'}}>
-        <h3 style={{marginTop: 4, marginBottom: 4}}>{title}</h3>
-        <Scrollbars style={{ width: '100%' }}>
-            {listItems}
-        </Scrollbars>
-    </div>;
+    return (
+        <div className='items-center p-2 border-b border-gray-200 overflow-auto h-[30vmin]'>
+                {listItems}
+        </div>
+    )
 }
 
 export default RoundList;
