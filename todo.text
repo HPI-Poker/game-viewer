@@ -1,4 +1,10 @@
-Top Roundes fertig machen
 Responsiv Design ready machen
-Andere Buttons fertig machen
 Pokertable vom design fertig machen 
+
+  <div key={i} className='flex justify-between items-center p-2 border-b border-gray-200 scroll-auto'>
+                                        <div className='flex items-center space-x-2'>
+                                            <div className='text-text-color font-semibold'>Round {i + 1}</div>
+                                            <div className='text-text-color font-semibold'>Player 1</div>
+                                        </div>
+                                        <div className='text-text-color font-semibold'>+1000</div>
+                                    </div>
