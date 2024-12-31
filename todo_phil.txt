@@ -5,3 +5,4 @@
 5. Left and right only show Bankroll
 6. Darkmode: Cards are greyed out
 7. Alignment of texts in game viewer is dependant on size
+8. make sure uploaded file is valid or throw an error

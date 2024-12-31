@@ -5,7 +5,6 @@ import {
   FileArchive,
   FileCheck,
   FileUp,
-  Key,
   Play,
   Trash2,
   Trophy,
@@ -14,9 +13,9 @@ import {
 import { SummaryObj } from "../model/SummaryObj";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import FishvsMrCarlo from "../samples/SUM_Fish_vs_Mr Carlo.json" 
-import PairHuntervsPrecomputer from "../samples/SUM_Fish_vs_Mr Carlo.json" 
-import SkeletonvsOptimizer from "../samples/SUM_Fish_vs_Mr Carlo.json" 
+import FishvsMrCarlo from "../data/SUM_Fish_vs_Mr Carlo.json" 
+import PairHuntervsPrecomputer from "../data/SUM_Pair Hunter_vs_Precomputer.json" 
+import SkeletonvsOptimizer from "../data/SUM_Skeleton_vs_Optimizer.json" 
 
 interface UploadPageProps {
   setSummary: React.Dispatch<React.SetStateAction<SummaryObj | null>>;
@@ -42,8 +41,13 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
       reader.onload = () => {
         const json = JSON.parse(reader.result as string);
         console.log(json);
-        setSummary(new SummaryObj(json));
-        setLocalStorage(json);
+        if (json["Logs"] && json["Top hands"] && json["Player stats"] && json["Score"] && json["Discretized bankroll counts"]) {
+            setSummary(new SummaryObj(json));
+            setLocalStorage(json);
+        } else {
+            alert("Invalid summary.json file. Needs to contain 'Logs', 'Top hands', 'Player stats', 'Score', and 'Discretized bankroll counts' fields.");
+            setFiles([]);
+        }
       };
       console.log(acceptedFiles[0]);
       reader.readAsText(acceptedFiles[0]);
@@ -268,27 +272,27 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                 </div>
               </div>
               <div className="flex ">
-                <div className="bg-white border p-2 px-4 rounded-md cursor-pointer -mt-2">
+                <div className="bg-white border p-2 px-4 rounded-md -mt-2">
                   <div className="flex flex-col justify-start">
-                    <h1 className="font-medium flex">Sample Game</h1>
+                    <h1 className="font-medium flex">Sample Games</h1>
                     <p className="text-sm opacity-60">
-                      Try a game, when you have no bot file
+                      Watch some sample games if you don't have a json file.
                     </p>
                   </div>
                   <div className="mt-5 space-y-3">
-                    <h1 className="font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(FishvsMrCarlo))}>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(FishvsMrCarlo))}>
                       <div>Player 1 vs Player 2</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(PairHuntervsPrecomputer))}>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(PairHuntervsPrecomputer))}>
                       <div>Player 1 vs Player 2</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(SkeletonvsOptimizer))}>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(SkeletonvsOptimizer))}>
                       <div>Player 1 vs Player 2</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={sampleGame}>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={() => sampleGame(FishvsMrCarlo)}>
                       <div>Player 1 vs Player 2</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
