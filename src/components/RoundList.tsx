@@ -23,7 +23,7 @@ function RoundList({ summary, selectedRound, setRound, onlyTopHands = false, hei
                 <div key={i}  className='overflow-auto'>
                     <div className='flex items-center space-x-2 cursor-pointer' onClick={(() => setRound(i))}>
                         <div className='text-text-color font-semibold'>Round #{topHand?.roundNumber || i+1} </div>
-                        <div className='text-text-color font-semibold'>{wonChips}</div>
+                        {/* <div className='text-text-color font-semibold'>{wonChips}</div> */}
                     </div>
                    
                 </div>
