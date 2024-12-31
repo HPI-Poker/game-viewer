@@ -29,48 +29,45 @@ const Summary = ({ summary }: { summary: SummaryObj }) => {
         plugins: {
             legend: {
                 labels: {
-                    color: 'white', // change the color of the legend labels to white
+                    color: 'black', // change the color of the legend labels to white
                 },
             },
             tooltip: {
-                titleColor: 'white', // change the color of the tooltip title to white
-                bodyColor: 'white', // change the color of the tooltip body to white
+                titleColor: 'black', // change the color of the tooltip title to white
+                bodyColor: 'black', // change the color of the tooltip body to white
             },
         },
         scales: {
             x: {
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.2)', // change the color of the x-axis grid lines
+                    color: 'rgba(0, 0, 0, 0.5)', // change the color of the x-axis grid lines
                 },
                 ticks: {
-                    color: 'white', // change the color of the x-axis ticks to white
+                    color: 'black', // change the color of the x-axis ticks to white
                 },
             },
             y: {
                 grid: {
-                    color: 'rgba(255, 255, 255, 0.2)', // change the color of the x-axis grid lines
+                    color: 'rgba(0, 0, 0, 0.5)', // change the color of the x-axis grid lines
                 },
                 ticks: {
-                    color: 'white', // change the color of the y-axis ticks to white
+                    color: 'black', // change the color of the y-axis ticks to white
                 },
             },
         },
     };
 
     return <Scrollbars style={{ width: '1000px', height: '500px' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
-            <div style={{ display: 'flex', width: '100%' }}>
-                <h3 style={{ marginTop: 4, marginBottom: 4, stroke:"black", fill:"black"}}>Summary of {summary.title}</h3>
+        <div className="text-text-color" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+            <div style={{ display: 'flex', width: '100%', flexDirection: 'column' }}>
+                <h3 style={{ marginTop: 4, marginBottom: 4, fontWeight: "bold" }}>Summary of {summary.title}</h3>
+                <span><b>Winner:</b> {summary.tie ? 'Tie' : summary.winner}</span>
             </div>
 
             <div className="summary-container">
                 <div className="player-stats">
                     <div className="player-stats">
                         <h4 style={{marginBottom: 2}}>Player stats:</h4>
-
-                        <div style={{marginBottom: 14, marginTop: 14, width: '100%', display: 'flex'}}>
-                            <span><b>Winner:</b> {summary.tie ? 'Tie' : summary.winner}</span>
-                        </div>
 
                         <table>
                             <thead>
@@ -91,13 +88,19 @@ const Summary = ({ summary }: { summary: SummaryObj }) => {
                                 <tr>
                                     <td className='stat-name' title="Voluntarily put money in pot (pre-flop)">VPIP</td>
                                     {summary.playerStats.map((player, index) => (
-                                        <td key={index}>{player.VPIP * 100}%</td>
+                                        <td key={index}>{Math.round(player.VPIP * 100)}%</td>
                                     ))}
                                 </tr>
                                 <tr>
                                     <td className='stat-name' title="Pre Flop Raise Percentage">PFR</td>
                                     {summary.playerStats.map((player, index) => (
-                                        <td key={index}>{player.PFR * 100}%</td>
+                                        <td key={index}>{Math.round(player.PFR * 100)}%</td>
+                                    ))}
+                                </tr>
+                                <tr>
+                                    <td className='stat-name' title="Illegal Actions">Illegals</td>
+                                    {summary.playerStats.map((player, index) => (
+                                        <td key={index}>{Math.round(player.PFR * 100)}%</td>
                                     ))}
                                 </tr>
                             </tbody>

@@ -1,4 +1,3 @@
-3. Summary Page is all white
 4. Players keep swapping sides
 5. Left and right only show Bankroll
 6. Darkmode: Cards are greyed out
