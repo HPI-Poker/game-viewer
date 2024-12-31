@@ -68,7 +68,7 @@ const PokerTable = (
         </div>
         <div className='flex relative justify-center'>
           <div className='flex z-10 w-[126vmin] items-center justify-center'>
-            <svg width="1200" height="500" className='z-10 mt-40 ml-[11rem]'>
+            <svg width="100%" height="100%" viewBox="0 0 1200 500" className='z-10 mt-40 ml-[11rem]'>
               <Filters />
               <text x={500} y={23} style={{ fontWeight: "600" }} fill="white " textAnchor='middle'>{round}</text>
               <Board x={500} y={110} cards={communityCards} />

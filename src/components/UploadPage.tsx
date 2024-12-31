@@ -58,7 +58,7 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
             <div className='flex items-center h-full'>
                 <div className="flex w-screen justify-center">
                     <div className='space-y-4'>
-                        <div className='max-w-[35rem] bg-white p-4 rounded-lg border'>
+                        <div className='mt-2 max-w-[35rem] bg-white p-4 rounded-lg border'>
                             <div className='text-text-color font-semibold flex text-xl'>
                                 <h1>Watch and Analyze Poker Bot Matches</h1>
                             </div>
@@ -129,10 +129,15 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                                 {/* Filedisplay */}
                                 {files.length > 0 && (
                                     <>
-                                        <div className='flex mt-4 text-sm font-medium'>
-                                            <span className='text-text-color'>File</span>
-                                        </div>
                                         <div className='mt-1'>
+                                            <div className='flex w-full mt-5'>
+                                                <button className='border-text-color flex justify-center items-center space-x-3 w-full hover:border-text-color/40 transition-all border text-text-color h-9 font-medium rounded-md group' onClick={gameHandler}>
+                                                    <span className=''>Start Game</span>
+                                                </button>
+                                            </div>
+                                            <div className='flex mt-4 text-sm font-medium'>
+                                                <span className='text-text-color'>File</span>
+                                            </div>
                                             {files.map((file, index) => (
                                                 <>
                                                     <AnimatePresence key={index}>
@@ -200,12 +205,6 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                                                             </div>
                                                         </div>
                                                     </motion.div>
-
-                                                    <div className='flex w-full mt-5'>
-                                                        <button className='border-text-color flex justify-center items-center space-x-3 w-full hover:border-text-color/40 transition-all border text-text-color h-9 font-medium rounded-md group' onClick={gameHandler}>
-                                                            <span className=''>Start game</span>
-                                                        </button>
-                                                    </div>
                                                 </>
                                             ))}
                                         </div>
