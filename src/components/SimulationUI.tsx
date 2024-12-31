@@ -154,7 +154,7 @@ function SimulationUI(
                     <div className='absolute justify-center min-w-[20rem] z-30 mt-32 bg-white rounded-lg shadow-md p-2'>
                         <div className='flex items-center justify-between w-full px-2'>
                             <h1 className='text-text-color font-semibold text-xl'>
-                                Top Rounds
+                                All Rounds
                             </h1>
                             <div className='text-text-color cursor-pointer' onClick={(() => setRounds(!rounds))}>
                                 <X className='size-5' />
