@@ -101,7 +101,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
   const skipToEnd = () => {
     const lastRoundIdx = log.length - 1;
     const lastLogIdx = log[lastRoundIdx].length - 1;
-    if (roundLogIndices[0] === lastRoundIdx && roundLogIndices[1] === lastLogIdx) {
+    if (roundLogIndices[0] !== lastRoundIdx && roundLogIndices[1] !== lastLogIdx) {
       setRoundLogIndices([lastRoundIdx, lastLogIdx]);
       handleLogLine(lastRoundIdx, lastLogIdx);
     } else {
