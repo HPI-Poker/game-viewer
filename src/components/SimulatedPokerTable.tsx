@@ -403,7 +403,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
             communityCards={communityCards}
             players={players}
             pot={pot}
-            round={`Round #${roundLogIndices[0] + 1} (${roundLogIndices[1]})`}
+            round={`Round #${roundLogIndices[0]} (${roundLogIndices[1]})`}
             activePlayerIdx={activePlayerIdx}
           />}
 
