@@ -1,10 +1,11 @@
 import './styles/App.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { SummaryObj } from './model/SummaryObj';
 import { AppProvider } from './model/AppContext';
 import UploadPage from './components/UploadPage';
 import PokerTablePage from './components/PokerTablePage';
+import NotFoundPage from './components/NotFoundPage';
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Routes>
             <Route path="/" element={<UploadPage setSummary={setSummary} setLog={setLog} summary={summary} />} />
             <Route path='/game' element={<PokerTablePage summary={summary} />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>
       </div>
