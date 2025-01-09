@@ -20,6 +20,11 @@ In the `logs/summary/` directory of your poker engine repository you will find s
 ### Viewing an example match
 You can select one of the example matches if you do not have a summary json available.
 
+## Deploying
+We deploy to github pages by running:
+`npm run deploy`
+The updated website will be available under https://hpi-poker.github.io/game-viewer.
+
 ## Credits
 For the Playing Cards we are using:
 Vectorized Playing Cards 3.2
