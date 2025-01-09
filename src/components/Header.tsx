@@ -7,7 +7,7 @@ function Header() {
 
 
     return (
-        <header className="p-5 text-text-color flex items-start fixed w-screen bg-white">
+        <header className="p-5 text-text-color flex items-start w-full bg-white">
             <div className='flex  items-center space-x-2'>
                 <div className=''>
                    <img src={logo} className='size-10' alt="test" />

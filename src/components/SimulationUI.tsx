@@ -1,10 +1,13 @@
 "use client"
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 // import "../styles/SimulationUI.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faArrowLeft, faForward, faFastForward } from '@fortawesome/free-solid-svg-icons';
 import Header from './Header';
+import { X } from 'lucide-react';
+import RoundList from './RoundList';
+import { SummaryObj } from '../model/SummaryObj';
 
 enum Speed {
     Slow,
@@ -64,9 +67,12 @@ export class GameSimulationConfig {
 function SimulationUI(
 
 
-    { config, setConfig, skipToEnd, backToHome }:
-        { config: GameSimulationConfig, setConfig: (c: GameSimulationConfig) => any, skipToEnd: () => void, backToHome: () => void }
+    { config, setConfig, skipToEnd, backToHome, setRound, summary }:
+        { config: GameSimulationConfig, setConfig: (c: GameSimulationConfig) => any, skipToEnd: () => void, backToHome: () => void, setRound: (r: number) => any, summary: SummaryObj | null }
 ) {
+
+    const [open, setOpen] = useState(false);
+    const [rounds, setRounds] = useState(false)
 
     const keyboardHandler = (e: KeyboardEvent) => {
         console.log(e.key);
@@ -96,10 +102,22 @@ function SimulationUI(
         };
     }, [config, setConfig]);
 
+
+    const topRounds = () => {
+        setOpen(!open)
+        setRounds(false)
+    }
+
+    const Rounds = () => {
+        setRounds(!rounds)
+        setOpen(false)
+
+    }
+
     return (
         <>
             <div className=' justify-center flex items-center space-x-5'>
-                <div className='space-x-5 p-3 bg-white flex^ rounded-full  px-7 shadow-md '>
+                <div className='space-x-5  max-[1500px]:py-2 bg-white flex rounded-full py-3  px-7 shadow-md '>
                     <button className="text-text-color p-1 border rounded-full px-2 hover:scale-105 transition-all" onClick={backToHome}><FontAwesomeIcon icon={faArrowLeft} /></button>
                     {config.isPaused ?
                         <button className="text-text-color p-1 border rounded-full px-2.5 hover:scale-105 transition-all" onClick={() => setConfig(config.copyWithPaused(false))}>
@@ -119,12 +137,60 @@ function SimulationUI(
                     >
                         <FontAwesomeIcon icon={faFastForward} />
                     </button>
-                    <button className="text-text-color font-medium hover:font-semibold transition-all hover:scale-105" onClick={skipToEnd}>Summary</button>
+                    <button className="text-text-color font-medium hover:font-semibold transition-all hover:scale-105 max-[1500px]:text-sm" onClick={skipToEnd}>Summary</button>
 
                 </div>
-                <div className='px-4 py-4 cursor-pointer bg-white rounded-full border hover:scale-105 transition-all'>
-                    <h1 className='text-text-color font-medium'>Top Rounds</h1>
+                <div className='px-4 max-[1500px]:px-3 max-[1500px]:py-3 py-4 cursor-pointer bg-white rounded-full border hover:scale-105 transition-all' onClick={topRounds}>
+                    <h1 className='text-text-color font-medium max-[1500px]:text-sm'> Rounds</h1>
                 </div>
+                <div className='px-4 py-4 cursor-pointer max-[1500px]:px-3 max-[1500px]:py-3 bg-white rounded-full border hover:scale-105 transition-all' onClick={Rounds}>
+                    <h1 className='text-text-color font-medium max-[1500px]:text-sm'>Top Rounds</h1>
+                </div>
+
+
+            </div>
+            <div className='flex justify-center'>
+                {rounds &&
+                    <div className='absolute justify-center min-w-[20rem] z-30 mt-32 bg-white rounded-lg shadow-md p-2'>
+                        <div className='flex items-center justify-between w-full px-2'>
+                            <h1 className='text-text-color font-semibold text-xl'>
+                                All Rounds
+                            </h1>
+                            <div className='text-text-color cursor-pointer' onClick={(() => setRounds(!rounds))}>
+                                <X className='size-5' />
+                            </div>
+                        </div>
+                        <div className='mt-2'>
+                            <RoundList
+
+                                summary={summary}
+                                onlyTopHands={true}
+                                selectedRound={0}
+                                setRound={setRound}
+                            />
+                        </div>
+                    </div>}
+
+                {open &&
+                    <div className='absolute justify-center min-w-[20rem] z-30 mt-32 bg-white rounded-lg shadow-md p-2'>
+                        <div className='flex items-center justify-between w-full px-2'>
+                            <h1 className='text-text-color font-semibold text-xl'>
+                                Top Rounds
+                            </h1>
+                            <div className='text-text-color cursor-pointer' onClick={(() => setOpen(!open))}>
+                                <X className='size-5' />
+                            </div>
+                        </div>
+                        <div className='mt-2'>
+                            <RoundList
+
+                                summary={summary}
+                                onlyTopHands={false}
+                                selectedRound={0}
+                                setRound={setRound}
+                            />
+                        </div>
+                    </div>}
             </div>
 
 

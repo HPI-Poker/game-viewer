@@ -1,0 +1,7 @@
+1. Darkmode: Cards are greyed out?
+2. Animate Chips
+3. how to get back from summary to game? Press summary again to get to 0?
+4. close round selection by selecting one
+5. auto scroll to selected round and make it fat
+
+how to easily show winner of a match (and why)?
