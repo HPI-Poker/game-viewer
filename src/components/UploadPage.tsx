@@ -18,6 +18,7 @@ import BlindBanditvsMrCarlo from "../data/SUM_blind_bandit_vs_mr_carlo.json"
 import MrCarlovsBlindBandit from "../data/SUM_mr_carlo_vs_blind_bandit.json"
 import BlindBanditvsPreflopRanger from "../data/SUM_blind_bandit_vs_preflop_ranger.json" 
 import BlindBanditvsOptimizer from "../data/SUM_blind_bandit_vs_optimizer.json"
+import OptimizervsPreflopRanger from "../data/SUM_optimizer_vs_preflop_ranger.json"
 
 interface UploadPageProps {
   setSummary: React.Dispatch<React.SetStateAction<SummaryObj | null>>;
@@ -300,6 +301,10 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                     </h1>
                     <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(BlindBanditvsPreflopRanger))}>
                       <div>Blind Bandit vs Preflop Ranger</div>
+                      <Play className="size-5 text-green-700" />
+                    </h1>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(OptimizervsPreflopRanger))}>
+                      <div>Optimizer vs Preflop Ranger</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
                   </div>
