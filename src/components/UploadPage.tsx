@@ -13,9 +13,11 @@ import {
 import { SummaryObj } from "../model/SummaryObj";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import FishvsMrCarlo from "../data/SUM_Fish_vs_Mr Carlo.json" 
-import PairHuntervsPrecomputer from "../data/SUM_Pair Hunter_vs_Precomputer.json" 
-import SkeletonvsOptimizer from "../data/SUM_Skeleton_vs_Optimizer.json" 
+import BlindBanditvsAllIn from "../data/SUM_blind_bandit_vs_all_in.json"
+import BlindBanditvsMrCarlo from "../data/SUM_blind_bandit_vs_mr_carlo.json" 
+import MrCarlovsBlindBandit from "../data/SUM_mr_carlo_vs_blind_bandit.json"
+import BlindBanditvsPreflopRanger from "../data/SUM_blind_bandit_vs_preflop_ranger.json" 
+import BlindBanditvsOptimizer from "../data/SUM_blind_bandit_vs_optimizer.json"
 
 interface UploadPageProps {
   setSummary: React.Dispatch<React.SetStateAction<SummaryObj | null>>;
@@ -280,22 +282,26 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                     </p>
                   </div>
                   <div className="mt-5 space-y-3">
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(FishvsMrCarlo))}>
-                      <div>Fish vs Mr Carlo</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(BlindBanditvsAllIn))}>
+                      <div>Blind Bandit vs All In</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(PairHuntervsPrecomputer))}>
-                      <div>Pair Hunter vs Pre Computer</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(BlindBanditvsMrCarlo))}>
+                      <div>Blind Bandit vs Mr Carlo</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(SkeletonvsOptimizer))}>
-                      <div>Skeleton vs Optimizer</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(MrCarlovsBlindBandit))}>
+                      <div>Mr Carlo vs Blind Bandit</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    {/* <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={() => sampleGame(FishvsMrCarlo)}>
-                      <div>Player 1 vs Player 2</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(BlindBanditvsOptimizer))}>
+                      <div>Blind Bandit vs Optimizer</div>
                       <Play className="size-5 text-green-700" />
-                    </h1> */}
+                    </h1>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(BlindBanditvsPreflopRanger))}>
+                      <div>Blind Bandit vs Preflop Ranger</div>
+                      <Play className="size-5 text-green-700" />
+                    </h1>
                   </div>
                 </div>
               </div>
