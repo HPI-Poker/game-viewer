@@ -21,7 +21,7 @@ function RoundList({ summary, selectedRound, setRound, onlyTopHands = false, hei
             const wonChips = topHand ? Math.abs(topHand.chipDelta[0]).toString() : undefined;
             listItems.push(
                 <div key={i}  className='overflow-auto'>
-                    <div className='flex items-center space-x-2 cursor-pointer' onClick={(() => setRound(i))}>
+                    <div className='flex items-center space-x-2 cursor-pointer' onClick={(() => setRound(i+1))}>
                         <div className='text-text-color font-semibold'>Round #{topHand?.roundNumber || i+1} </div>
                         {/* <div className='text-text-color font-semibold'>{wonChips}</div> */}
                     </div>
