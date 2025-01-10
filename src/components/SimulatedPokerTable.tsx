@@ -98,15 +98,25 @@ const SimulatedPokerTable = ({ log, summary, close }: {
     });
   };
 
+  const isAtEnd = () => {
+    const lastRoundIdx = log.length - 1;
+    const lastLogIdx = log[lastRoundIdx].length - 1;
+    return roundLogIndices[0] === lastRoundIdx && roundLogIndices[1] === lastLogIdx;
+  };
+
+  const reset = () => {
+    setRoundLogIndices([0, 0]);
+    handleLogLine(0, 0);
+  };
+
   const skipToEnd = () => {
     const lastRoundIdx = log.length - 1;
     const lastLogIdx = log[lastRoundIdx].length - 1;
-    if (roundLogIndices[0] !== lastRoundIdx && roundLogIndices[1] !== lastLogIdx) {
+    if (isAtEnd()) {
+      reset();
+    } else {
       setRoundLogIndices([lastRoundIdx, lastLogIdx]);
       handleLogLine(lastRoundIdx, lastLogIdx);
-    } else {
-      setRoundLogIndices([0, 0]);
-      handleLogLine(0, 0);
     }
   };
 
@@ -377,7 +387,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
       {/* <Header /> */}
       <div className='w-screen h-screen flex flex-col'>
         <div className='mt-5 mb-1'>
-          <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={close} summary={summary} setRound={setRound} />
+          <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={isAtEnd() ? reset : close } summary={summary} setRound={setRound} />
         </div>
         <div>
           <div>
