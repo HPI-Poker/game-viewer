@@ -6,9 +6,7 @@ import PokerTable from './PokerTable';
 import { EResult } from '../model/PlayerMatrix';
 import { SummaryObj } from '../model/SummaryObj';
 import Summary from './Summary';
-import RoundList from './RoundList';
 import '../styles/SimulatedPokerTable.css';
-import Header from './Header';
 
 const getWinnerOrDraw = (resultPlayer1: string, resultPlayer2: string) => {
   const [namePlayer1, chipsStrPlayer1] = resultPlayer1.split(" ");
@@ -407,7 +405,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
             communityCards={communityCards}
             players={players}
             pot={pot}
-            round={`Round #${roundLogIndices[0]} (${roundLogIndices[1]})`}
+            round={`Round #${roundLogIndices[0] + 1} (${roundLogIndices[1]})`}
             activePlayerIdx={activePlayerIdx}
           />}
 

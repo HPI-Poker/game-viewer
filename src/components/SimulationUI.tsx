@@ -173,7 +173,7 @@ function SimulationUI(
                             <RoundList
                                 summary={summary}
                                 onlyTopHands={true}
-                                selectedRound={0}
+                                selectedRound={round}
                                 setRound={setRound}
                             />
                         </div>
@@ -194,7 +194,7 @@ function SimulationUI(
 
                                 summary={summary}
                                 onlyTopHands={false}
-                                selectedRound={0}
+                                selectedRound={round}
                                 setRound={setRound}
                             />
                         </div>

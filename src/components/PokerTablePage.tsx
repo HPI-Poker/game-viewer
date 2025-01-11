@@ -17,7 +17,7 @@ const PokerTablePage = ({ summary }: PokerTablePageProps) => {
         const log: string[][] = []
         let runLog: string[] = []
 
-        for (let i = 1; i < summary.logs.length; i++) {
+        for (let i = 2; i < summary.logs.length; i++) {
             runLog.push(summary.logs[i])
 
             if (runLog.includes("===")) {
