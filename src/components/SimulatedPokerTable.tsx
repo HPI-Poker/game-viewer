@@ -123,7 +123,8 @@ const SimulatedPokerTable = ({ log, summary, close }: {
   const setRound = (round: number) => {
     if (round !== roundLogIndices[0]) {
       const newRoundIdx = Math.min(round, log.length - 1);
-      const newIndices = [newRoundIdx, 0];
+      const newLogIdx = roundLogIndices[1] === log[newRoundIdx].length - 1 ? log[newRoundIdx].length - 1 : 0;
+      const newIndices = [newRoundIdx, newLogIdx];
       setRoundLogIndices(newIndices);
       handleLogLine(newIndices[0], newIndices[1]);
     }
