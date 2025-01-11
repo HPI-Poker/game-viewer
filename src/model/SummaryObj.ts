@@ -23,12 +23,16 @@ export class PlayerStats {
     score: number;
     VPIP: number;
     PFR: number;
+    illegals: number;
+    timeouts: number;
 
     constructor(obj: any, score: number) {
         this.score = score;
         this.name = obj['name'];
         this.VPIP = obj['VPIP'];
         this.PFR = obj['PFR'];
+        this.illegals = obj['illegal actions'];
+        this.timeouts = obj['timeouts'];
     }
 }
 
