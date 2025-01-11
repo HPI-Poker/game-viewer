@@ -369,6 +369,17 @@ const SimulatedPokerTable = ({ log, summary, close }: {
           );
       });
 
+    } else if (logLine.includes(" response misformatted:")) {
+      const [playerName] = logLine.split(" response misformatted:");
+      newTexts = players.map((player, idx) => {
+        if (player.name === playerName) {
+          return "ERROR! response misformatted";
+        } else {
+          return "";
+        }
+      });
+    } else if (logLine.includes(" disconnected")) {
+
     } else if (logLine !== "" && logLine !== "===") {
       throw new Error("Unknown line: " + logLine);
     }
