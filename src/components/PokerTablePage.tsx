@@ -17,10 +17,11 @@ const PokerTablePage = ({ summary }: PokerTablePageProps) => {
         const log: string[][] = []
         let runLog: string[] = []
 
+        // first two log lines are the header... so we skip them
         for (let i = 2; i < summary.logs.length; i++) {
             runLog.push(summary.logs[i])
 
-            if (runLog.includes("===")) {
+            if (runLog.includes("===") || i === summary.logs.length - 1) {
                 log.push(runLog)
                 runLog = []
             }
