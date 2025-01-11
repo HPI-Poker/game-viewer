@@ -26,7 +26,7 @@ function Chips({ chips, x, y, text }: { chips: number, x: number, y: number, tex
         </text>
       </g>
       : <g>
-        <text x={x + 75} y={y + 7} fontSize="20" textAnchor="middle" dominantBaseline="middle" fill="black">
+        <text x={x + 75} y={y + 7} fontSize="20" textAnchor="middle" dominantBaseline="middle" fill="white">
           {chips}
         </text>
       </g>

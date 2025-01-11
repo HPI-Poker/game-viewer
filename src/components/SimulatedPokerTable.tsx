@@ -404,7 +404,6 @@ const SimulatedPokerTable = ({ log, summary, close }: {
 
   return (
     <div className='overflow-hidden'>
-      {/* <Header /> */}
       <div className='w-screen h-screen flex flex-col'>
         <div className='mt-5 mb-1'>
           <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={isAtEnd() ? reset : close } summary={summary} round={roundLogIndices[0]} setRound={setRound} />
