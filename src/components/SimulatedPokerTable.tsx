@@ -122,9 +122,10 @@ const SimulatedPokerTable = ({ log, summary, close }: {
 
   const setRound = (round: number) => {
     if (round !== roundLogIndices[0]) {
-      const newIndices = [round, 0];
+      const newRoundIdx = Math.min(round, log.length - 1);
+      const newIndices = [newRoundIdx, 0];
       setRoundLogIndices(newIndices);
-      handleLogLine(round, 0);
+      handleLogLine(newIndices[0], newIndices[1]);
     }
   };
 
@@ -398,26 +399,7 @@ const SimulatedPokerTable = ({ log, summary, close }: {
       {/* <Header /> */}
       <div className='w-screen h-screen flex flex-col'>
         <div className='mt-5 mb-1'>
-          <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={isAtEnd() ? reset : close } summary={summary} setRound={setRound} />
-        </div>
-        <div>
-          <div>
-            {/* <RoundList
-            title="Top Rounds"
-            summary={summary}
-            onlyTopHands={true}
-            selectedRound={roundLogIndices[0]}
-            setRound={setRound}
-          /> */}
-          </div>
-          {/* <div style={{ flex: '1 1 auto' }}>
-          <RoundList
-            title="All Rounds"
-            summary={summary}
-            selectedRound={roundLogIndices[0]}
-            setRound={setRound}
-          />
-        </div> */}
+          <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={isAtEnd() ? reset : close } summary={summary} round={roundLogIndices[0]} setRound={setRound} />
         </div>
         <div className='flex flex-column justify-center align-center h-screen'>
           {!isDone && <PokerTable
