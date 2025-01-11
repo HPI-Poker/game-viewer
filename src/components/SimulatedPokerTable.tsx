@@ -380,6 +380,15 @@ const SimulatedPokerTable = ({ log, summary, close }: {
       });
     } else if (logLine.includes(" disconnected")) {
 
+    } else if (logLine.includes(" ran out of time")) {
+      const [playerName] = logLine.split(" ran out of time");
+      newTexts = players.map((player, idx) => {
+        if (player.name === playerName) {
+          return "Timeout!";
+        } else {
+          return "";
+        }
+      });
     } else if (logLine !== "" && logLine !== "===") {
       throw new Error("Unknown line: " + logLine);
     }
