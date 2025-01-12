@@ -5,6 +5,7 @@ import { SummaryObj } from './model/SummaryObj';
 import { AppProvider } from './model/AppContext';
 import UploadPage from './components/UploadPage';
 import PokerTablePage from './components/PokerTablePage';
+import TournamentPage from './components/TornamentPage';
 
 function App() {
 
@@ -28,8 +29,9 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<UploadPage setSummary={setSummary} setLog={setLog} summary={summary} />} />
-            <Route path='/game' element={<PokerTablePage summary={summary} />} />
-          </Routes>
+            <Route path="/game" element={<PokerTablePage summary={summary} />} />
+            <Route path="/tournament" element={<TournamentPage setSummary={setSummary} setLog={setLog} summary={summary} />}/>
+            </Routes>
         </Router>
       </div>
     </AppProvider>

@@ -17,7 +17,7 @@ import FishvsMrCarlo from "../data/SUM_Fish_vs_Mr Carlo.json"
 import PairHuntervsPrecomputer from "../data/SUM_Pair Hunter_vs_Precomputer.json" 
 import SkeletonvsOptimizer from "../data/SUM_Skeleton_vs_Optimizer.json" 
 
-interface UploadPageProps {
+export interface UploadPageProps {
   setSummary: React.Dispatch<React.SetStateAction<SummaryObj | null>>;
   setLog: React.Dispatch<React.SetStateAction<string[][] | null>>;
   summary: SummaryObj | null;
@@ -66,6 +66,10 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
 
   const gameHandler = () => {
     navigate("/game");
+  };
+  
+  const tournamentHandler = () => {
+    navigate("/tournament");
   };
 
   const sampleGame = (json:any) => {
@@ -298,6 +302,13 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                     </h1> */}
                   </div>
                 </div>
+              </div>
+              <div className="flex justify-center mt-4">
+                <button 
+                  className="bg-blue-500 text-white font-bold py-2 px-4 rounded h-1/2"
+                  onClick={tournamentHandler}>
+                  Go to tournament
+                </button>
               </div>
             </div>
           </div>
