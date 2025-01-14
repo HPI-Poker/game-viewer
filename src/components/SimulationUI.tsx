@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react';
+import React, { MouseEventHandler, useEffect, useRef, useState } from 'react';
 // import "../styles/SimulationUI.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlay, faPause, faArrowLeft, faForward, faFastForward } from '@fortawesome/free-solid-svg-icons';
@@ -65,23 +65,15 @@ export class GameSimulationConfig {
 
 
 function SimulationUI(
-
-
-    { config, setConfig, skipToEnd, backToHome, setRound, summary }:
-        { config: GameSimulationConfig, setConfig: (c: GameSimulationConfig) => any, skipToEnd: () => void, backToHome: () => void, setRound: (r: number) => any, summary: SummaryObj | null }
+    { config, setConfig, skipToEnd, backToHome, round, setRound, summary }:
+        { config: GameSimulationConfig, setConfig: (c: GameSimulationConfig) => any, skipToEnd: () => void, backToHome: () => void, round: number, setRound: (r: number) => any, summary: SummaryObj | null }
 ) {
 
     const [open, setOpen] = useState(false);
     const [rounds, setRounds] = useState(false)
 
-    const keyboardHandler = (e: KeyboardEvent) => {
-        console.log(e.key);
-    }
-
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
-            keyboardHandler(e);
-
             if (e.key === ' ') {
                 setConfig(config.copyWithPaused(!config.isPaused));
             }
@@ -111,8 +103,25 @@ function SimulationUI(
     const Rounds = () => {
         setRounds(!rounds)
         setOpen(false)
-
     }
+
+    const clickTimer = useRef<NodeJS.Timeout | null>(null);
+    const CLICK_DELAY = 250; // Adjust the delay as needed
+
+    const actualSingleClickWrapper = (fn: () => MouseEventHandler<HTMLButtonElement> | undefined) => {
+        // Clear any running timer (if user clicked again quickly)
+        if (clickTimer.current) clearTimeout(clickTimer.current);
+
+        // Start new timer for single click
+        clickTimer.current = setTimeout(() => {
+            fn();
+        }, CLICK_DELAY);
+    };
+
+    const doubleClickWrapper = (fn: () => MouseEventHandler<HTMLButtonElement> | undefined) => {
+        if (clickTimer.current) clearTimeout(clickTimer.current);
+        fn();
+    };
 
     return (
         <>
@@ -123,17 +132,17 @@ function SimulationUI(
                         <button className="text-text-color p-1 border rounded-full px-2.5 hover:scale-105 transition-all" onClick={() => setConfig(config.copyWithPaused(false))}>
                             <FontAwesomeIcon icon={faPlay} />
                         </button> :
-                        <button className="text-text-color p-1 border rounded-full px-3 hover:scale-105 transition-all" onClick={() => setConfig(config.copyWithPaused(true))}>
+                        <button className="text-text-color p-1 border rounded-full px-3 hover:scale-105 transition-all" onClick={() => setConfig(config.copyWithPaused(true))} >
                             <FontAwesomeIcon icon={faPause} />
                         </button>
                     }
-                    <button className="text-text-color p-1 border rounded-full px-2 hover:scale-105 transition-all" onClick={() => setConfig(config.copyWithSpeed(Speed.Fast))}>
+                    <button className="text-text-color p-1 border rounded-full px-2 hover:scale-105 transition-all" onClick={() => actualSingleClickWrapper(() => setConfig(config.copyWithSpeed(Speed.Fast)))} onDoubleClick={() => doubleClickWrapper(() => setRound(round + 1))}>
                         <FontAwesomeIcon icon={faForward} />
                     </button>
                     <button
                         className="text-text-color p-1 border rounded-full px-2 hover:scale-105 transition-all"
-                        onClick={() => setConfig(config.copyWithSpeed(Speed.VeryFast))}
-                        onDoubleClick={() => setConfig(config.copyWithSpeed(Speed.TheFastest))}
+                        onClick={() => actualSingleClickWrapper(() => setConfig(config.copyWithSpeed(Speed.VeryFast)))}
+                        onDoubleClick={() => doubleClickWrapper(() => setRound(round + 10))}
                     >
                         <FontAwesomeIcon icon={faFastForward} />
                     </button>
@@ -154,7 +163,7 @@ function SimulationUI(
                     <div className='absolute justify-center min-w-[20rem] z-30 mt-32 bg-white rounded-lg shadow-md p-2'>
                         <div className='flex items-center justify-between w-full px-2'>
                             <h1 className='text-text-color font-semibold text-xl'>
-                                All Rounds
+                                Top Rounds
                             </h1>
                             <div className='text-text-color cursor-pointer' onClick={(() => setRounds(!rounds))}>
                                 <X className='size-5' />
@@ -162,10 +171,9 @@ function SimulationUI(
                         </div>
                         <div className='mt-2'>
                             <RoundList
-
                                 summary={summary}
                                 onlyTopHands={true}
-                                selectedRound={0}
+                                selectedRound={round}
                                 setRound={setRound}
                             />
                         </div>
@@ -175,7 +183,7 @@ function SimulationUI(
                     <div className='absolute justify-center min-w-[20rem] z-30 mt-32 bg-white rounded-lg shadow-md p-2'>
                         <div className='flex items-center justify-between w-full px-2'>
                             <h1 className='text-text-color font-semibold text-xl'>
-                                Top Rounds
+                                All Rounds
                             </h1>
                             <div className='text-text-color cursor-pointer' onClick={(() => setOpen(!open))}>
                                 <X className='size-5' />
@@ -186,7 +194,7 @@ function SimulationUI(
 
                                 summary={summary}
                                 onlyTopHands={false}
-                                selectedRound={0}
+                                selectedRound={round}
                                 setRound={setRound}
                             />
                         </div>
