@@ -11,7 +11,7 @@ const PokerTablePage = ({ summary }: PokerTablePageProps) => {
 
 
     const navigate = useNavigate();
-    const handleClose = () => navigate('/');
+    const handleClose = () => navigate('/tournament');
 
     if (summary) {
         const log: string[][] = []

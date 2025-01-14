@@ -10,7 +10,7 @@ const GamePage = () => {
     const { games } = useAppContext();
     const navigate = useNavigate();
 
-    const handleClose = () => navigate('/');
+    const handleClose = () => navigate('/tournament');
 
     const game = games.find((game) => game.id === id);
 
