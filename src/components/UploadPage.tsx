@@ -13,12 +13,13 @@ import {
 import { SummaryObj } from "../model/SummaryObj";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import BlindBanditvsAllIn from "../data/SUM_blind_bandit_vs_all_in.json"
-import BlindBanditvsMrCarlo from "../data/SUM_blind_bandit_vs_mr_carlo.json" 
-import MrCarlovsBlindBandit from "../data/SUM_mr_carlo_vs_blind_bandit.json"
-import BlindBanditvsPreflopRanger from "../data/SUM_blind_bandit_vs_preflop_ranger.json" 
-import BlindBanditvsOptimizer from "../data/SUM_blind_bandit_vs_optimizer.json"
-import OptimizervsPreflopRanger from "../data/SUM_optimizer_vs_preflop_ranger.json"
+import ScaredyCatvsAllIn from "../data/SUM_all_in_vs_scaredy_cat.json"
+import ScaredyCatvsMrCarlo from "../data/SUM_mr_carlo_vs_scaredy_cat.json"
+import ScaredyCatvsOptimizer from "../data/SUM_optimizer_vs_scaredy_cat.json"
+import ScaredyCatvsPreflopRanger from "../data/SUM_preflop_ranger_vs_scaredy_cat.json"
+import ScaredyCatvsScaredyTomCat from "../data/SUM_scaredy_tom_cat_vs_scaredy_cat.json"
+import ScaredyCatvsBlindBandit from "../data/SUM_blind_bandit_vs_scaredy_cat.json"
+import ScaredyCatvsRandomRaiser from "../data/SUM_random_raiser_vs_scaredy_cat.json"
 
 interface UploadPageProps {
   setSummary: React.Dispatch<React.SetStateAction<SummaryObj | null>>;
@@ -283,28 +284,32 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                     </p>
                   </div>
                   <div className="mt-5 space-y-3">
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(BlindBanditvsAllIn))}>
-                      <div>Blind Bandit vs All In</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(ScaredyCatvsBlindBandit))}>
+                      <div>Scaredy Cat vs Blind Bandit</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(BlindBanditvsMrCarlo))}>
-                      <div>Blind Bandit vs Mr Carlo</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-all" onClick={(() => sampleGame(ScaredyCatvsAllIn))}>
+                      <div>Scaredy Cat vs All In</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(MrCarlovsBlindBandit))}>
-                      <div>Mr Carlo vs Blind Bandit</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(ScaredyCatvsMrCarlo))}>
+                      <div>Scaredy Cat vs Mr Carlo</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(BlindBanditvsOptimizer))}>
-                      <div>Blind Bandit vs Optimizer</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(ScaredyCatvsRandomRaiser))}>
+                      <div>Scaredy Cat vs Random Raiser</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(BlindBanditvsPreflopRanger))}>
-                      <div>Blind Bandit vs Preflop Ranger</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(ScaredyCatvsOptimizer))}>
+                      <div>Scaredy Cat vs Optimizer</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
-                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(OptimizervsPreflopRanger))}>
-                      <div>Optimizer vs Preflop Ranger</div>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(ScaredyCatvsScaredyTomCat))}>
+                      <div>Scaredy Cat vs Tom Cat</div>
+                      <Play className="size-5 text-green-700" />
+                    </h1>
+                    <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(ScaredyCatvsPreflopRanger))}>
+                      <div>Scaredy Cat vs Preflop Ranger</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
                   </div>
