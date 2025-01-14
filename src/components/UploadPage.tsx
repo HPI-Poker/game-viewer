@@ -309,7 +309,7 @@ function UploadPage({ setSummary, setLog, summary }: UploadPageProps) {
                       <Play className="size-5 text-green-700" />
                     </h1>
                     <h1 className="cursor-pointer font-medium border flex items-center px-2 justify-between -ml-2 p-1 rounded-md hover:scale-105 transition-al"  onClick={(() => sampleGame(ScaredyCatvsPreflopRanger))}>
-                      <div>Optimizer vs Preflop Ranger</div>
+                      <div>Scaredy Cat vs Preflop Ranger</div>
                       <Play className="size-5 text-green-700" />
                     </h1>
                   </div>
