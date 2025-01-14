@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/game-viewer/static/css/main.3e6de2be.css",
-    "main.js": "/game-viewer/static/js/main.f4d234f9.js",
+    "main.css": "/game-viewer/static/css/main.b188f6d7.css",
+    "main.js": "/game-viewer/static/js/main.545e2d15.js",
     "static/js/453.5565870f.chunk.js": "/game-viewer/static/js/453.5565870f.chunk.js",
     "static/media/pokertable.jpg": "/game-viewer/static/media/pokertable.115877c24a3247dbc548.jpg",
     "static/media/JOKER-1.svg": "/game-viewer/static/media/JOKER-1.1ff8e3141c2a4ef37dd0.svg",
@@ -62,12 +62,12 @@
     "static/media/DIAMOND-1.svg": "/game-viewer/static/media/DIAMOND-1.895de1232d16b7a74c4d.svg",
     "static/media/poker-chip.svg": "/game-viewer/static/media/poker-chip.3d18237a876b0ddfd34aa73c14b94dd1.svg",
     "index.html": "/game-viewer/index.html",
-    "main.3e6de2be.css.map": "/game-viewer/static/css/main.3e6de2be.css.map",
-    "main.f4d234f9.js.map": "/game-viewer/static/js/main.f4d234f9.js.map",
+    "main.b188f6d7.css.map": "/game-viewer/static/css/main.b188f6d7.css.map",
+    "main.545e2d15.js.map": "/game-viewer/static/js/main.545e2d15.js.map",
     "453.5565870f.chunk.js.map": "/game-viewer/static/js/453.5565870f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3e6de2be.css",
-    "static/js/main.f4d234f9.js"
+    "static/css/main.b188f6d7.css",
+    "static/js/main.545e2d15.js"
   ]
 }
