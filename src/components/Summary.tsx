@@ -97,6 +97,18 @@ const Summary = ({ summary }: { summary: SummaryObj }) => {
                                         <td key={index}>{Math.round(player.PFR * 100)}%</td>
                                     ))}
                                 </tr>
+                                <tr>
+                                    <td className='stat-name' title="Illegal Actions">Illegals</td>
+                                    {summary.playerStats.map((player, index) => (
+                                        <td key={index}>{player.illegals}</td>
+                                    ))}
+                                </tr>
+                                <tr>
+                                    <td className='stat-name' title="Timeout">Timeout</td>
+                                    {summary.playerStats.map((player, index) => (
+                                        <td key={index}>{player.timeouts}</td>
+                                    ))}
+                                </tr>
                             </tbody>
                         </table>
                     </div>

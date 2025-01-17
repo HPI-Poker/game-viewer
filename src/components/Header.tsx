@@ -13,7 +13,7 @@ function Header() {
                    <img src={logo} className='size-10' alt="test" />
                 </div>
                 <div>
-                    <h1 onClick={handleHome} className="text-2xl cursor-pointer font-medium max-sm:text-lg">HPI Poker Bot Competition 2025</h1>
+                    <h1 onClick={handleHome} className="text-2xl cursor-pointer font-medium max-sm:text-lg">HPI Showdown 2025</h1>
                 </div>
 
             </div>

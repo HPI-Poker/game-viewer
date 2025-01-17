@@ -6,9 +6,7 @@ import PokerTable from './PokerTable';
 import { EResult } from '../model/PlayerMatrix';
 import { SummaryObj } from '../model/SummaryObj';
 import Summary from './Summary';
-import RoundList from './RoundList';
 import '../styles/SimulatedPokerTable.css';
-import Header from './Header';
 
 const getWinnerOrDraw = (resultPlayer1: string, resultPlayer2: string) => {
   const [namePlayer1, chipsStrPlayer1] = resultPlayer1.split(" ");
@@ -98,23 +96,35 @@ const SimulatedPokerTable = ({ log, summary, close }: {
     });
   };
 
+  const isAtEnd = () => {
+    const lastRoundIdx = log.length - 1;
+    const lastLogIdx = log[lastRoundIdx].length - 1;
+    return roundLogIndices[0] === lastRoundIdx && roundLogIndices[1] === lastLogIdx;
+  };
+
+  const reset = () => {
+    setRoundLogIndices([0, 0]);
+    handleLogLine(0, 0);
+  };
+
   const skipToEnd = () => {
     const lastRoundIdx = log.length - 1;
     const lastLogIdx = log[lastRoundIdx].length - 1;
-    if (roundLogIndices[0] !== lastRoundIdx && roundLogIndices[1] !== lastLogIdx) {
+    if (isAtEnd()) {
+      reset();
+    } else {
       setRoundLogIndices([lastRoundIdx, lastLogIdx]);
       handleLogLine(lastRoundIdx, lastLogIdx);
-    } else {
-      setRoundLogIndices([0, 0]);
-      handleLogLine(0, 0);
     }
   };
 
   const setRound = (round: number) => {
     if (round !== roundLogIndices[0]) {
-      const newIndices = [round, 0];
+      const newRoundIdx = Math.min(round, log.length - 1);
+      const newLogIdx = roundLogIndices[1] === log[newRoundIdx].length - 1 ? log[newRoundIdx].length - 1 : 0;
+      const newIndices = [newRoundIdx, newLogIdx];
       setRoundLogIndices(newIndices);
-      handleLogLine(round, 0);
+      handleLogLine(newIndices[0], newIndices[1]);
     }
   };
 
@@ -359,6 +369,26 @@ const SimulatedPokerTable = ({ log, summary, close }: {
           );
       });
 
+    } else if (logLine.includes(" response misformatted:")) {
+      const [playerName] = logLine.split(" response misformatted:");
+      newTexts = players.map((player, idx) => {
+        if (player.name === playerName) {
+          return "ERROR! response misformatted";
+        } else {
+          return "";
+        }
+      });
+    } else if (logLine.includes(" disconnected")) {
+
+    } else if (logLine.includes(" ran out of time")) {
+      const [playerName] = logLine.split(" ran out of time");
+      newTexts = players.map((player, idx) => {
+        if (player.name === playerName) {
+          return "Timeout!";
+        } else {
+          return "";
+        }
+      });
     } else if (logLine !== "" && logLine !== "===") {
       throw new Error("Unknown line: " + logLine);
     }
@@ -374,36 +404,16 @@ const SimulatedPokerTable = ({ log, summary, close }: {
 
   return (
     <div className='overflow-hidden'>
-      {/* <Header /> */}
       <div className='w-screen h-screen flex flex-col'>
         <div className='mt-5 mb-1'>
-          <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={close} summary={summary} setRound={setRound} />
-        </div>
-        <div>
-          <div>
-            {/* <RoundList
-            title="Top Rounds"
-            summary={summary}
-            onlyTopHands={true}
-            selectedRound={roundLogIndices[0]}
-            setRound={setRound}
-          /> */}
-          </div>
-          {/* <div style={{ flex: '1 1 auto' }}>
-          <RoundList
-            title="All Rounds"
-            summary={summary}
-            selectedRound={roundLogIndices[0]}
-            setRound={setRound}
-          />
-        </div> */}
+          <SimulationUI config={config} setConfig={setConfig} skipToEnd={skipToEnd} backToHome={isAtEnd() ? reset : close } summary={summary} round={roundLogIndices[0]} setRound={setRound} />
         </div>
         <div className='flex flex-column justify-center align-center h-screen'>
           {!isDone && <PokerTable
             communityCards={communityCards}
             players={players}
             pot={pot}
-            round={`Round #${roundLogIndices[0]} (${roundLogIndices[1]})`}
+            round={`Round #${roundLogIndices[0] + 1} (${roundLogIndices[1]})`}
             activePlayerIdx={activePlayerIdx}
           />}
 

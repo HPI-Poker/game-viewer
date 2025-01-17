@@ -15,7 +15,7 @@ const Player = ({ player, isActive, x, y }: { player: PlayerObj, isActive: boole
         <Card card={player.hand[0]} idx={0} x={0} y={200} isFolded={player.hasFolded} />
         <Card card={player.hand[1]} idx={1} x={0} y={200} isFolded={player.hasFolded} />
 
-        <text x="30" y="350" fontSize="14" fill="white" fontStyle="italic">
+        <text x="50" y="350" fontSize="20" fill="white" fontStyle="italic">
           {player.text}
         </text>
       </g>

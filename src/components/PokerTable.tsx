@@ -39,30 +39,6 @@ const PokerTable = (
                   </div>
                 </div>
               </div>
-              {/* <div>
-                <div className='flex w-[15rem] items-center mt-2'>
-                  <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
-                    <div>
-                      Chips:
-                    </div>
-                    <div className=''>
-                      {players[0]?.stack}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className='flex w-[15rem] items-center mt-2'>
-                  <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
-                    <div>
-                      Bet:
-                    </div>
-                    <div className=''>
-                      {players[0]?.bet}
-                    </div>
-                  </div>
-                </div>
-              </div>*/}
             </div>
           </div>
         </div>
@@ -79,9 +55,6 @@ const PokerTable = (
               <Player x={815} y={230} player={players[1]} isActive={activePlayerIdx === 1} />
             </svg>
           </div>
-          {/* <div className='absolute -z-0 overflow-hidden w-[126vmin] h-[70vmin] flex justify-center items-center select-none'>
-            <img src={pokerTableImage} className=' object-cover ' alt="" />
-          </div> */}
         </div>
         <div className='w-[22vmin] h-full bg-white rounded-r-xl shadow-md p-3 text-right'>
           <div>
@@ -108,30 +81,6 @@ const PokerTable = (
                 </div>
               </div>
             </div>
-            {/* <div>
-                <div className='flex w-[15rem] items-center mt-2'>
-                  <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
-                    <div>
-                      Chips:
-                    </div>
-                    <div className=''>
-                      {players[1]?.stack}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <div className='flex w-[15rem] items-center mt-2'>
-                  <div className='text-text-color flex items-center text-lg font-semibold max-[1940px]:text-sm space-x-2  '>
-                    <div>
-                      Bet:
-                    </div>
-                    <div className=''>
-                      {players[1]?.bet}
-                    </div>
-                  </div>
-                </div>
-              </div>*/}
           </div>
         </div>
       </div>
