@@ -2,20 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { UploadPageProps } from "./UploadPage";
 import './TournamentPage.css';
 import { SummaryObj } from '../model/SummaryObj';
-import first_round_7 from '../data/tournament/summary/SUM_first_round_20250117050118_le_boss_vs_quarter_eyed_bandit.json';
-import first_round_8 from '../data/tournament/summary/SUM_first_round_20250117050125_haben_wir_noch_chips_vs_free_fridaybeers.json';
+import first_round_1 from '../data/tournament/summary/SUM_first_round_20250117050118_le_boss_vs_quarter_eyed_bandit.json';
+import first_round_2 from '../data/tournament/summary/SUM_first_round_20250117050125_haben_wir_noch_chips_vs_free_fridaybeers.json';
 import first_round_3 from '../data/tournament/summary/SUM_first_round_20250117050151_blind_bandit_deluxe_vs_random_bets.json';
 import first_round_4 from '../data/tournament/summary/SUM_first_round_20250117050156_slotty_vs_graph_von_monte_carlo.json';
 import first_round_5 from '../data/tournament/summary/SUM_first_round_20250117050232_tableflip_vs_harry.json';
 import first_round_6 from '../data/tournament/summary/SUM_first_round_20250117050328_tjongen_vs_cryptic_chameleon.json';
-import first_round_1 from '../data/tournament/summary/SUM_first_round_20250117050336_steady_eddy_vs_came_for_the_pizza.json';
-import first_round_2 from '../data/tournament/summary/SUM_first_round_20250117050422_fishmonger_vs_stockfish_v2.json';
-import quarter_4 from '../data/tournament/summary/SUM_quarter_finals_20250117052157_quarter_eyed_bandit_vs_haben_wir_noch_chips.json';
+import first_round_7 from '../data/tournament/summary/SUM_first_round_20250117050336_steady_eddy_vs_came_for_the_pizza.json';
+import first_round_8 from '../data/tournament/summary/SUM_first_round_20250117050422_fishmonger_vs_stockfish_v2.json';
+import quarter_1 from '../data/tournament/summary/SUM_quarter_finals_20250117052157_quarter_eyed_bandit_vs_haben_wir_noch_chips.json';
 import quarter_2 from '../data/tournament/summary/SUM_quarter_finals_20250117052202_blind_bandit_deluxe_vs_graph_von_monte_carlo.json';
 import quarter_3 from '../data/tournament/summary/SUM_quarter_finals_20250117052207_harry_vs_cryptic_chameleon.json';
-import quarter_1 from '../data/tournament/summary/SUM_quarter_finals_20250117052215_steady_eddy_vs_stockfish_v2.json';
-import semi_1 from '../data/tournament/summary/SUM_semi_finals_20250117053209_graph_von_monte_carlo_vs_stockfish_v2.json';
-import semi_2 from '../data/tournament/summary/SUM_semi_finals_20250117053204_quarter_eyed_bandit_vs_harry.json';
+import quarter_4 from '../data/tournament/summary/SUM_quarter_finals_20250117052215_steady_eddy_vs_stockfish_v2.json';
+import semi_1 from '../data/tournament/summary/SUM_semi_finals_20250117095451_quarter_eyed_bandit_vs_graph_von_monte_carlo.json';
+import semi_2 from '../data/tournament/summary/SUM_semi_finals_20250117095518_harry_vs_stockfish_v2.json';
 import final from '../data/tournament/summary/SUM_finals_20250117053820_graph_von_monte_carlo_vs_harry.json';
 import game_for_third from '../data/tournament/summary/SUM_third_place_20250117053737_quarter_eyed_bandit_vs_stockfish_v2.json';
 import { m } from 'framer-motion';
@@ -26,11 +26,10 @@ const TournamentPage = ({ setSummary, setLog, summary }: UploadPageProps) => {
   const [matches, setMatches] = useState<Map<number, Map<string, any>>>(new Map());
 
   const teamNames = [
-    "steady eddy",
-    "came for the pizza",
-    "fishmonger",
-    "stockfish v2",
-
+    "le boss",
+    "quarter eyed bandit",
+    "haben wir noch chips",
+    "free fridaybeers",
     "blind bandit deluxe",
     "random bets",
     "slotty",
@@ -39,30 +38,24 @@ const TournamentPage = ({ setSummary, setLog, summary }: UploadPageProps) => {
     "harry",
     "tjongen",
     "cryptic chameleon",
-
-    "le boss",
-    "quarter eyed bandit",
-    "haben wir noch chips",
-    "free fridaybeers",
-
     "steady eddy",
+    "came for the pizza",
+    "fishmonger",
     "stockfish v2",
 
+    "quarter eyed bandit",
+    "haben wir noch chips",
     "blind bandit deluxe",
     "graph von monte carlo",
     "harry",
     "cryptic chameleon",
-
-    "quarter eyed bandit",
-    "haben wir noch chips",
-    
-
+    "steady eddy",
     "stockfish v2",
     
+    "quarter eyed bandit",
     "graph von monte carlo",
     "harry",
-
-    "quarter eyed bandit",
+    "stockfish v2",
 
     "graph von monte carlo",
     "harry",
