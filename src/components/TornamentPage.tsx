@@ -2,8 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { UploadPageProps } from "./UploadPage";
 import './TournamentPage.css';
 import { SummaryObj } from '../model/SummaryObj';
-import example_round from "../data/tournament/round_0.json"; 
-import example_round1 from "../data/SUM_Precomputer_vs_Mr Carlo.json";
+import first_round_7 from '../data/tournament/summary/SUM_first_round_20250117050118_le_boss_vs_quarter_eyed_bandit.json';
+import first_round_8 from '../data/tournament/summary/SUM_first_round_20250117050125_haben_wir_noch_chips_vs_free_fridaybeers.json';
+import first_round_3 from '../data/tournament/summary/SUM_first_round_20250117050151_blind_bandit_deluxe_vs_random_bets.json';
+import first_round_4 from '../data/tournament/summary/SUM_first_round_20250117050156_slotty_vs_graph_von_monte_carlo.json';
+import first_round_5 from '../data/tournament/summary/SUM_first_round_20250117050232_tableflip_vs_harry.json';
+import first_round_6 from '../data/tournament/summary/SUM_first_round_20250117050328_tjongen_vs_cryptic_chameleon.json';
+import first_round_1 from '../data/tournament/summary/SUM_first_round_20250117050336_steady_eddy_vs_came_for_the_pizza.json';
+import first_round_2 from '../data/tournament/summary/SUM_first_round_20250117050422_fishmonger_vs_stockfish_v2.json';
+import quarter_4 from '../data/tournament/summary/SUM_quarter_finals_20250117052157_quarter_eyed_bandit_vs_haben_wir_noch_chips.json';
+import quarter_2 from '../data/tournament/summary/SUM_quarter_finals_20250117052202_blind_bandit_deluxe_vs_graph_von_monte_carlo.json';
+import quarter_3 from '../data/tournament/summary/SUM_quarter_finals_20250117052207_harry_vs_cryptic_chameleon.json';
+import quarter_1 from '../data/tournament/summary/SUM_quarter_finals_20250117052215_steady_eddy_vs_stockfish_v2.json';
+import semi_1 from '../data/tournament/summary/SUM_semi_finals_20250117053209_graph_von_monte_carlo_vs_stockfish_v2.json';
+import semi_2 from '../data/tournament/summary/SUM_semi_finals_20250117053204_quarter_eyed_bandit_vs_harry.json';
+import final from '../data/tournament/summary/SUM_finals_20250117053820_graph_von_monte_carlo_vs_harry.json';
+import game_for_third from '../data/tournament/summary/SUM_third_place_20250117053737_quarter_eyed_bandit_vs_stockfish_v2.json';
 import { m } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,39 +26,51 @@ const TournamentPage = ({ setSummary, setLog, summary }: UploadPageProps) => {
   const [matches, setMatches] = useState<Map<number, Map<string, any>>>(new Map());
 
   const teamNames = [
-    "Team 1",
-    "Team 2",
-    "Team 3",
-    "Team 4",
-    "Team 5",
-    "Team 6",
-    "Team 7",
-    "Team 8",
-    "Team 9",
-    "Team 10",
-    "Team 11",
-    "Team 12",
-    "Team 13",
-    "Team 14",
-    "Team 15",
-    "Team 16",
-    "Team 1",
-    "Team 4",
-    "Team 5",
-    "Team 8",
-    "Team 9",
-    "Team 12",
-    "Team 13",
-    "Team 16",
-    "Team 1",
-    "Team 8",
-    "Team 9",
-    "Team 16",
-    "Team 1",
-    "Team 16",
-    "Team 16",
-    "Team 8"
+    "steady eddy",
+    "came for the pizza",
+    "fishmonger",
+    "stockfish v2",
+
+    "blind bandit deluxe",
+    "random bets",
+    "slotty",
+    "graph von monte carlo",
+    "tableflip",
+    "harry",
+    "tjongen",
+    "cryptic chameleon",
+
+    "le boss",
+    "quarter eyed bandit",
+    "haben wir noch chips",
+    "free fridaybeers",
+
+    "steady eddy",
+    "stockfish v2",
+
+    "blind bandit deluxe",
+    "graph von monte carlo",
+    "harry",
+    "cryptic chameleon",
+
+    "quarter eyed bandit",
+    "haben wir noch chips",
+    
+
+    "stockfish v2",
+    
+    "graph von monte carlo",
+    "harry",
+
+    "quarter eyed bandit",
+
+    "graph von monte carlo",
+    "harry",
+
+    "graph von monte carlo",
+    "stockfish v2",
   ];
+  console.log(teamNames.length)
 
   const getLocalStorageItem = (item: string, defaultValue: string) => {
     const itemString = localStorage.getItem(item);
@@ -61,7 +87,7 @@ const TournamentPage = ({ setSummary, setLog, summary }: UploadPageProps) => {
   const [hiddenOrName, setHiddenOrName] = useState<string[]>(Array.from({length: teamNames.length}, () => 'Reveal Winner'));
 
   useEffect(() => {
-    for (let i = 0; i < 16; ++i) {
+    // for (let i = 0; i < 16; ++i) {
       // fetch(`/data/tournament/round_${i}.json`)
       // .then(response => {
       //   return response.json()
@@ -70,10 +96,28 @@ const TournamentPage = ({ setSummary, setLog, summary }: UploadPageProps) => {
       //   matches.set(i, data);
       //   setMatches(matches);
       // });
-      matches.set(i, example_round1 as any);
-      const alreadyRevealed = JSON.parse(getLocalStorageItem("revealed", "[]"));
-      setHiddenOrName(Array.from({length: teamNames.length}, (v, i) => alreadyRevealed.includes(i) ? teamNames[i] : "Reveal Winner"));
-    }
+    // matches.set(i, example_round1 as any);
+
+    matches.set(0, first_round_1 as any);
+    matches.set(1, first_round_2 as any);
+    matches.set(2, first_round_3 as any);
+    matches.set(3, first_round_4 as any);
+    matches.set(4, first_round_5 as any);
+    matches.set(5, first_round_6 as any);
+    matches.set(6, first_round_7 as any);
+    matches.set(7, first_round_8 as any);
+    matches.set(8, quarter_1 as any);
+    matches.set(9, quarter_2 as any);
+    matches.set(10, quarter_3 as any);
+    matches.set(11, quarter_4 as any);
+    matches.set(12, semi_1 as any);
+    matches.set(13, semi_2 as any);
+    matches.set(14, final as any);
+    matches.set(15, game_for_third as any);
+
+    const alreadyRevealed = JSON.parse(getLocalStorageItem("revealed", "[]"));
+    setHiddenOrName(Array.from({length: teamNames.length}, (v, i) => alreadyRevealed.includes(i) ? teamNames[i] : "Reveal Winner"));
+    // }
   }, []);  
 
   const showRound = (round: number) => {
@@ -99,7 +143,7 @@ const TournamentPage = ({ setSummary, setLog, summary }: UploadPageProps) => {
 
   const determineClass = (round: number) => { 
     const alreadyRevealed = JSON.parse(getLocalStorageItem("revealed", "[]"));
-    console.log(round)
+    // console.log(round)
     return (alreadyRevealed.includes(round) || round < 16) ? ' text-black font-bold p-0.75' : ' rounded bg-green-500 text-white font-bold';
   }
 
